@@ -28,12 +28,15 @@ const styles = StyleSheet.create({
     width: 175,
     height: 275,
     marginTop: 15,
+    marginBottom: 10,
     marginLeft: 20,
     borderRadius: 8,
+    marginBottom: 10,
   },
 
   text: {
     fontSize: 18,
     color: colors.gray,
+    marginTop: 5,
   },
 });

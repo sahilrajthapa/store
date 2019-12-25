@@ -23,9 +23,9 @@ export default class Slider extends Component {
         <SliderBox
           images={this.state.images}
           sliderBoxHeight={225}
-          onCurrentImagePressed={index =>
-            console.warn(`image ${index} pressed`)
-          }
+          // onCurrentImagePressed={index =>
+          //   console.warn(`image ${index} pressed`)
+          // }
           autoplay
           dotColor="#6582E9"
           inactiveDotColor="#90A4AE"
