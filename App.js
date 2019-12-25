@@ -11,7 +11,7 @@ import LoginScreen from './src/screens/Login';
 import HomeScreen from './src/screens/Home';
 import NotificationsScreen from './src/screens/Notifications';
 
-const MyDrawerNavigator = createDrawerNavigator({
+const Drawer = createDrawerNavigator({
   Home: {
     screen: HomeScreen,
   },
@@ -23,7 +23,7 @@ const MyDrawerNavigator = createDrawerNavigator({
 const App = createStackNavigator(
   {
     Login: {screen: LoginScreen},
-    Home: {screen: MyDrawerNavigator},
+    Home: {screen: Drawer},
   },
   {
     initialRouteName: 'Login',
