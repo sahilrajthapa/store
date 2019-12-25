@@ -21,9 +21,10 @@ export default class Featured extends Component {
   };
 
   render() {
+    const {seeAllHandler} = this.props;
     return (
       <Section>
-        <Header heading="Featured" />
+        <Header heading="Featured" seeAllHandler={seeAllHandler} />
         <HorizontalScroll>{ENTRIES1.map(this._renderItem)}</HorizontalScroll>
       </Section>
     );

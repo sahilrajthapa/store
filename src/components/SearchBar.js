@@ -33,9 +33,18 @@ const styles = StyleSheet.create({
     borderColor: colors.white,
     borderRadius: 8,
     height: 50,
+    marginTop: 15,
     paddingTop: 7,
     paddingBottom: 7,
     backgroundColor: colors.white,
+    shadowOpacity: 0.7,
+    shadowRadius: 10,
+    shadowOffset: {
+      height: 0,
+      width: 0,
+    },
+
+    elevation: 1,
   },
   searchIconWrapper: {
     paddingLeft: 10,

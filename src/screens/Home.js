@@ -1,23 +1,13 @@
 import React, {Component} from 'react';
-import {
-  StyleSheet,
-  SafeAreaView,
-  StatusBar,
-  View,
-  Image,
-  ScrollView,
-  Dimensions,
-  Text,
-} from 'react-native';
+import {StyleSheet, Image} from 'react-native';
 import {Col, Row, Grid} from 'react-native-easy-grid';
 
+import ContainerView from '../components/ContainerView';
 import SearchBar from '../components/SearchBar';
 import Slider from '../components/Slider';
 import Categories from '../components/Categories';
 import Featured from '../components/Featured';
 import BestSell from '../components/BestSell';
-
-const {height} = Dimensions.get('window');
 
 export default class Home extends Component {
   static navigationOptions = {
@@ -29,58 +19,30 @@ export default class Home extends Component {
       />
     ),
   };
-  state = {
-    screenHeight: 0,
-  };
-
-  onContentSizeChange = (contentWidth, contentHeight) => {
-    this.setState({screenHeight: contentHeight});
-  };
 
   render() {
-    const scrollEnabled = this.state.screenHeight > height;
-
+    const {navigation} = this.props;
     return (
-      <SafeAreaView style={styles.container}>
-        <StatusBar barStyle="light-content" backgroundColor="green" />
-        <ScrollView
-          style={{flex: 1}}
-          contentContainerStyle={styles.scrollview}
-          scrollEnabled={scrollEnabled}
-          onContentSizeChange={this.onContentSizeChange}>
-          <Grid>
-            <Row style={styles.mainWrapper} size={100}>
-              <Col>
-                <SearchBar />
-                <Slider />
-                <Categories />
-                <Featured />
-                <BestSell />
-              </Col>
-            </Row>
-          </Grid>
-        </ScrollView>
-      </SafeAreaView>
+      <ContainerView>
+        <Grid>
+          <Row style={styles.mainWrapper} size={100}>
+            <Col>
+              <SearchBar />
+              <Slider />
+              <Categories />
+              <Featured seeAllHandler={() => navigation.navigate('Featured')} />
+              <BestSell />
+            </Col>
+          </Row>
+        </Grid>
+      </ContainerView>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#85D4E7',
-  },
-  scrollview: {
-    flexGrow: 1,
-  },
-  content: {
-    flexGrow: 1,
-    justifyContent: 'space-between',
-    padding: 10,
-  },
   mainWrapper: {
-    padding: 20,
-    backgroundColor: '#F6F9EF',
+    // padding: 20,
   },
   icon: {
     width: 24,

@@ -3,15 +3,26 @@ import {Text} from 'react-native';
 
 import {Col, Row, Grid} from 'react-native-easy-grid';
 
-export default function Header({heading}) {
+export default function Header({
+  heading,
+  seeAllHandler,
+  fontSize = 20,
+  screen,
+}) {
   return (
     <Grid>
       <Row>
         <Col size={3}>
-          <Text style={{fontSize: 20, fontWeight: '600'}}>{heading}</Text>
+          <Text style={{fontSize, fontWeight: '600'}}>{heading}</Text>
         </Col>
         <Col size={1}>
-          <Text style={{textAlign: 'right', paddingTop: 7}}>See all</Text>
+          {!screen && (
+            <Text
+              style={{textAlign: 'right', paddingTop: 7}}
+              onPress={seeAllHandler}>
+              See all
+            </Text>
+          )}
         </Col>
       </Row>
     </Grid>
