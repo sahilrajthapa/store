@@ -40,7 +40,7 @@ export default class Categories extends Component {
         }}
         key={index}>
         <ImageBackground
-          source={{uri: item.illustration}}
+          source={{uri: item.image}}
           imageStyle={{borderRadius: 8}}
           style={{
             width: '100%',

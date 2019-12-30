@@ -4,15 +4,15 @@ import Section from './Section';
 import Header from './Header';
 
 import Card from './Card';
-import {ENTRIES1} from '../static/entries';
+import {PRODUCTS} from '../static/entries';
 
 export default class BestSell extends Component {
   _renderItem = (item, index) => {
     return (
       <Card
         index={index}
-        uri={item.illustration}
-        title={item.subtitle}
+        uri={item.image}
+        title={item.title}
         condtn={index % 2 === 0}
         wrapperStyle={{marginLeft: 0}}
         key={index}
@@ -24,7 +24,7 @@ export default class BestSell extends Component {
     return (
       <Section>
         <Header heading="Best Sell" />
-        <View style={styles.cardWrapper}>{ENTRIES1.map(this._renderItem)}</View>
+        <View style={styles.cardWrapper}>{PRODUCTS.map(this._renderItem)}</View>
       </Section>
     );
   }

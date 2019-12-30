@@ -27,10 +27,10 @@ export default class Detail extends Component {
   render() {
     return (
       <ContainerView customStyle={{paddingLeft: 0, paddingRight: 0}}>
-        <Section propStyle={{marginBottom: 30}}>
+        <Section propStyle={{marginBottom: 20}}>
           <View style={styles.imgWrapper}>
             <ImageBackground
-              source={require('../static/img/med2.jpg')}
+              source={require('../static/img/med1.jpg')}
               style={{
                 width: '100%',
                 height: '100%',
@@ -102,11 +102,9 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '700',
     paddingRight: 5,
-    // lineHeight: 24,
   },
   infoText: {
     fontSize: 16,
-    // lineHeight: 24
   },
   quantityWrapper: {
     display: 'flex',
@@ -115,8 +113,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 30,
     paddingVertical: 10,
-    marginTop: 45,
-    marginBottom: 65,
+    marginTop: 50,
+    marginBottom: 70,
     borderColor: colors.lightGray,
     borderBottomWidth: 2,
     borderTopWidth: 2,

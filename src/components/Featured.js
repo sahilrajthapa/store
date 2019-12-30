@@ -4,15 +4,15 @@ import Section from './Section';
 import Header from './Header';
 import HorizontalScroll from './HorizontalScroll';
 import Card from './Card';
-import {ENTRIES1} from '../static/entries';
+import {PRODUCTS} from '../static/entries';
 
 export default class Featured extends Component {
   _renderItem = (item, index) => {
     return (
       <Card
         index={index}
-        uri={item.illustration}
-        title={item.subtitle}
+        uri={item.image}
+        title={item.title}
         condtn={index === 0}
         wrapperStyle={{marginLeft: 0}}
         key={index}
@@ -25,7 +25,7 @@ export default class Featured extends Component {
     return (
       <Section>
         <Header heading="Featured" seeAllHandler={seeAllHandler} />
-        <HorizontalScroll>{ENTRIES1.map(this._renderItem)}</HorizontalScroll>
+        <HorizontalScroll>{PRODUCTS.map(this._renderItem)}</HorizontalScroll>
       </Section>
     );
   }

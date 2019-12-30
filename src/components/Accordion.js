@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
   },
   row: {
     flexDirection: 'row',
-    height: 45,
+    height: 40,
     paddingLeft: 25,
     paddingRight: 25,
     alignItems: 'center',
