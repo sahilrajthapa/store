@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, TouchableOpacity, StyleSheet} from 'react-native';
 import {Icon} from 'react-native-elements';
 import ContainerView from '../components/ContainerView';
 import Section from '../components/Section';
@@ -25,15 +25,19 @@ export default class Featured extends Component {
   };
 
   _renderItem = (item, index) => {
+    const {navigation} = this.props;
     return (
-      <Card
-        index={index}
-        uri={item.illustration}
-        title={item.subtitle}
-        condtn={index % 2 === 0}
-        wrapperStyle={{marginLeft: 0}}
-        key={index}
-      />
+      <TouchableOpacity
+        onPress={() => navigation.navigate('Detail')}
+        key={index}>
+        <Card
+          index={index}
+          uri={item.illustration}
+          title={item.subtitle}
+          condtn={index % 2 === 0}
+          wrapperStyle={{marginLeft: 0}}
+        />
+      </TouchableOpacity>
     );
   };
 

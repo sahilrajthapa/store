@@ -40,7 +40,12 @@ export default class Login extends Component {
               customStyle={{marginBottom: 60}}
             />
             <View style={styles.buttonWrapper}>
-              <GradientBtn name="Log In" onPressHandler={loginHandler} />
+              <GradientBtn
+                name="Log In"
+                raised
+                borderRadius={5}
+                onPressHandler={loginHandler}
+              />
             </View>
           </View>
         </View>

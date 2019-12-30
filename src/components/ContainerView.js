@@ -21,13 +21,13 @@ export default class ContainerView extends Component {
 
   render() {
     const scrollEnabled = this.state.screenHeight > height;
-    const {children} = this.props;
+    const {children, customStyle} = this.props;
     return (
       <SafeAreaView style={styles.container}>
         <StatusBar barStyle="light-content" backgroundColor="green" />
         <ScrollView
           style={{flex: 1}}
-          contentContainerStyle={styles.scrollview}
+          contentContainerStyle={[styles.scrollview, customStyle]}
           scrollEnabled={scrollEnabled}
           onContentSizeChange={this.onContentSizeChange}>
           {children}

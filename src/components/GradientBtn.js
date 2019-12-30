@@ -5,7 +5,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import {Button} from 'react-native-elements';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 
-const GradientButton = ({name, onPressHandler}) => (
+const GradientButton = ({name, raised, borderRadius, onPressHandler}) => (
   <Button
     ViewComponent={LinearGradient}
     linearGradientProps={{
@@ -21,9 +21,9 @@ const GradientButton = ({name, onPressHandler}) => (
       paddingBottom: 7,
     }}
     buttonStyle={{
-      borderRadius: 5,
+      borderRadius,
     }}
-    raised
+    raised={raised}
     onPress={onPressHandler}
   />
 );

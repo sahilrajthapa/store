@@ -10,6 +10,7 @@ import LoginScreen from './src/screens/Login';
 import HomeScreen from './src/screens/Home';
 import NotificationsScreen from './src/screens/Notifications';
 import FeaturedScreen from './src/screens/Featured';
+import DetailScreen from './src/screens/Detail';
 
 import HeaderRight from './src/components/HeaderRight';
 
@@ -27,6 +28,9 @@ const App = createStackNavigator(
     Login: {screen: LoginScreen},
     Featured: {
       screen: FeaturedScreen,
+    },
+    Detail: {
+      screen: DetailScreen,
     },
     Home: {screen: Drawer},
   },

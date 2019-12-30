@@ -12,7 +12,8 @@ export default function Card({index, uri, title, condtn, wrapperStyle}) {
       }}
       key={index}>
       <Image
-        source={{uri}}
+        // source={{uri}}
+        source={require('../static/img/med2.jpg')}
         borderRadius={8}
         style={{
           width: '100%',
