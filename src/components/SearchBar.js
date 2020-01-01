@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
       width: 0,
     },
 
-    elevation: 1,
+    elevation: 5,
   },
   searchIconWrapper: {
     paddingLeft: 10,

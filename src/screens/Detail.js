@@ -49,7 +49,7 @@ export default class Detail extends Component {
             <View style={styles.infoWrapper}>
               <Text style={styles.infoLabel}>Disease Type:</Text>
               <Text style={styles.infoText}>
-                Necrotic enteritis, Transmissible enteritis
+                Necrotic enteritis , Transmissible enteritis
               </Text>
             </View>
           </View>
@@ -94,9 +94,9 @@ const styles = StyleSheet.create({
   },
   infoWrapper: {
     display: 'flex',
-    flexWrap: 'wrap',
+    // flexWrap: 'wrap',
     flexDirection: 'row',
-    alignItems: 'center',
+    alignItems: 'flex-start',
   },
   infoLabel: {
     fontSize: 18,
@@ -105,6 +105,8 @@ const styles = StyleSheet.create({
   },
   infoText: {
     fontSize: 16,
+    width: 250,
+    paddingTop: 2,
   },
   quantityWrapper: {
     display: 'flex',

@@ -72,6 +72,6 @@ const styles = StyleSheet.create({
   input: {
     textAlign: 'center',
     paddingHorizontal: 10,
-    height: '100%',
+    // height: '100%',
   },
 });

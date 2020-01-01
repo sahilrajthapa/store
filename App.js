@@ -11,6 +11,7 @@ import HomeScreen from './src/screens/Home';
 import NotificationsScreen from './src/screens/Notifications';
 import FeaturedScreen from './src/screens/Featured';
 import DetailScreen from './src/screens/Detail';
+import CartScreen from './src/screens/Cart';
 
 import HeaderRight from './src/components/HeaderRight';
 
@@ -29,6 +30,7 @@ const App = createStackNavigator(
     Featured: {
       screen: FeaturedScreen,
     },
+    Cart: {screen: CartScreen},
     Detail: {
       screen: DetailScreen,
     },
@@ -45,7 +47,7 @@ const App = createStackNavigator(
             onPress={navigation.toggleDrawer}
           />
         ),
-        headerRight: () => <HeaderRight />,
+        headerRight: () => <HeaderRight navigation={navigation} />,
       };
     },
   },

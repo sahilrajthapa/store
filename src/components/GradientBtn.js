@@ -16,7 +16,7 @@ const GradientButton = ({name, raised, borderRadius, onPressHandler}) => (
     title={name}
     titleStyle={{
       color: Colors.white,
-      height: 35,
+      fontSize: 20,
       paddingTop: 7,
       paddingBottom: 7,
     }}
