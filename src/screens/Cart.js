@@ -26,7 +26,6 @@ export default class Cart extends Component {
   };
 
   _renderItem = (item, index) => {
-    const {navigation} = this.props;
     return (
       <HorizontalCard
         key={index}
@@ -40,6 +39,7 @@ export default class Cart extends Component {
   };
 
   render() {
+    const {navigation} = this.props;
     return (
       <ContainerView>
         <Section marginTop={20}>
@@ -52,7 +52,7 @@ export default class Cart extends Component {
               name="Continue"
               raised
               borderRadius={5}
-              onPressHandler={() => {}}
+              onPressHandler={() => navigation.navigate('Checkout')}
             />
           </View>
         </Section>

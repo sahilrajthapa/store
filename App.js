@@ -12,6 +12,7 @@ import NotificationsScreen from './src/screens/Notifications';
 import FeaturedScreen from './src/screens/Featured';
 import DetailScreen from './src/screens/Detail';
 import CartScreen from './src/screens/Cart';
+import CheckoutScreen from './src/screens/Checkout';
 
 import HeaderRight from './src/components/HeaderRight';
 
@@ -31,6 +32,7 @@ const App = createStackNavigator(
       screen: FeaturedScreen,
     },
     Cart: {screen: CartScreen},
+    Checkout: {screen: CheckoutScreen},
     Detail: {
       screen: DetailScreen,
     },
