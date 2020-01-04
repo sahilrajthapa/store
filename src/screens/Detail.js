@@ -9,24 +9,26 @@ import Accordion from '../components/Accordion';
 import InputGroup from '../components/InputGroup';
 import GradientBtn from '../components/GradientBtn';
 export default class Detail extends Component {
-  static navigationOptions = ({navigation}) => {
-    return {
-      headerLeft: () => (
-        <Icon
-          color="#a9a9a9"
-          name={'keyboard-backspace'}
-          iconStyle={{paddingLeft: 20}}
-          onPress={() => {
-            navigation.goBack();
-          }}
-        />
-      ),
-    };
-  };
+  // static navigationOptions = ({navigation}) => {
+  //   return {
+  //     headerLeft: () => (
+  //       <Icon
+  //         color="#a9a9a9"
+  //         name={'keyboard-backspace'}
+  //         iconStyle={{paddingLeft: 20}}
+  //         onPress={() => {
+  //           navigation.goBack();
+  //         }}
+  //       />
+  //     ),
+  //   };
+  // };
 
   render() {
     return (
-      <ContainerView customStyle={{paddingLeft: 0, paddingRight: 0}}>
+      <ContainerView
+        navigation={navigation}
+        customStyle={{paddingLeft: 0, paddingRight: 0}}>
         <Section propStyle={{marginBottom: 20}}>
           <View style={styles.imgWrapper}>
             <ImageBackground

@@ -3,7 +3,7 @@ import {View, TouchableOpacity, StyleSheet} from 'react-native';
 import {Icon} from 'react-native-elements';
 import ContainerView from '../components/ContainerView';
 import Section from '../components/Section';
-import Header from '../components/Header';
+import Heading from '../components/Heading';
 
 import HorizontalCard from '../components/HorizontalCard';
 import GradientBtn from '../components/GradientBtn';
@@ -41,9 +41,9 @@ export default class Cart extends Component {
   render() {
     const {navigation} = this.props;
     return (
-      <ContainerView>
+      <ContainerView navigation={navigation}>
         <Section marginTop={20}>
-          <Header heading="Cart" fontSize={30} screen />
+          <Heading heading="Cart" fontSize={30} screen />
           <View style={styles.cardWrapper}>
             {PRODUCTS.map(this._renderItem)}
           </View>

@@ -6,9 +6,9 @@ import GradientBtn from '../components/GradientBtn';
 import colors from '../styles/color';
 
 export default class Login extends Component {
-  static navigationOptions = {
-    header: null,
-  };
+  // static navigationOptions = {
+  //   header: null,
+  // };
 
   loginHandler = () => {
     this.props.navigation.navigate('Home');

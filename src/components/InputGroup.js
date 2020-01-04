@@ -1,11 +1,5 @@
 import React, {Component} from 'react';
-import {
-  View,
-  TextInput,
-  TouchableOpacity,
-  Text,
-  StyleSheet,
-} from 'react-native';
+import {View, TextInput, TouchableOpacity, StyleSheet} from 'react-native';
 import colors from '../styles/color';
 import {Icon} from 'react-native-elements';
 

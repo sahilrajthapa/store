@@ -3,26 +3,26 @@ import {View, TouchableOpacity, StyleSheet} from 'react-native';
 import {Icon} from 'react-native-elements';
 import ContainerView from '../components/ContainerView';
 import Section from '../components/Section';
-import Header from '../components/Header';
+import Heading from '../components/Heading';
 
 import Card from '../components/Card';
 import {PRODUCTS} from '../static/entries';
 
 export default class Featured extends Component {
-  static navigationOptions = ({navigation}) => {
-    return {
-      headerLeft: () => (
-        <Icon
-          color="#a9a9a9"
-          name={'keyboard-backspace'}
-          iconStyle={{paddingLeft: 20}}
-          onPress={() => {
-            navigation.goBack();
-          }}
-        />
-      ),
-    };
-  };
+  // static navigationOptions = ({navigation}) => {
+  //   return {
+  //     headerLeft: () => (
+  //       <Icon
+  //         color="#a9a9a9"
+  //         name={'keyboard-backspace'}
+  //         iconStyle={{paddingLeft: 20}}
+  //         onPress={() => {
+  //           navigation.goBack();
+  //         }}
+  //       />
+  //     ),
+  //   };
+  // };
 
   _renderItem = (item, index) => {
     const {navigation} = this.props;
@@ -43,9 +43,9 @@ export default class Featured extends Component {
 
   render() {
     return (
-      <ContainerView>
+      <ContainerView navigation={navigation}>
         <Section marginTop={20}>
-          <Header heading="Featured" fontSize={30} screen />
+          <Heading heading="Featured" fontSize={30} screen />
           <View style={styles.cardWrapper}>
             {PRODUCTS.map(this._renderItem)}
           </View>

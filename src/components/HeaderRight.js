@@ -12,11 +12,13 @@ export default function HeaderRight({navigation}) {
         name={'person-outline'}
         iconStyle={{paddingLeft: 7}}
       />
-      <Icon
-        color="#a9a9a9"
-        name={'notifications-none'}
-        iconStyle={{paddingLeft: 7}}
-      />
+      <TouchableOpacity onPress={() => navigation.navigate('Notifications')}>
+        <Icon
+          color="#a9a9a9"
+          name={'notifications-none'}
+          iconStyle={{paddingLeft: 7}}
+        />
+      </TouchableOpacity>
 
       <TouchableOpacity onPress={() => navigation.navigate('Cart')}>
         <Icon

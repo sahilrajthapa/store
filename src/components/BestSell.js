@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {View, StyleSheet} from 'react-native';
 import Section from './Section';
-import Header from './Header';
+import Heading from './Heading';
 
 import Card from './Card';
 import {PRODUCTS} from '../static/entries';
@@ -23,7 +23,7 @@ export default class BestSell extends Component {
   render() {
     return (
       <Section>
-        <Header heading="Best Sell" />
+        <Heading heading="Best Sell" />
         <View style={styles.cardWrapper}>{PRODUCTS.map(this._renderItem)}</View>
       </Section>
     );

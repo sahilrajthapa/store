@@ -1,15 +1,8 @@
 import React, {Component} from 'react';
-import {
-  View,
-  Text,
-  ImageBackground,
-  ScrollView,
-  StyleSheet,
-} from 'react-native';
-import {Col, Row, Grid} from 'react-native-easy-grid';
+import {View, Text, ImageBackground, StyleSheet} from 'react-native';
 
 import Section from './Section';
-import Header from './Header';
+import Heading from './Heading';
 import HorizontalScroll from './HorizontalScroll';
 
 import {ENTRIES1} from '../static/entries';
@@ -61,7 +54,7 @@ export default class Categories extends Component {
   render() {
     return (
       <Section>
-        <Header heading="Categories" />
+        <Heading heading="Categories" />
         <HorizontalScroll>{ENTRIES1.map(this._renderItem)}</HorizontalScroll>
       </Section>
     );

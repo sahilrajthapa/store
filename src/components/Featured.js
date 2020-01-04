@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 
 import Section from './Section';
-import Header from './Header';
+import Heading from './Heading';
 import HorizontalScroll from './HorizontalScroll';
 import Card from './Card';
 import {PRODUCTS} from '../static/entries';
@@ -24,7 +24,7 @@ export default class Featured extends Component {
     const {seeAllHandler} = this.props;
     return (
       <Section>
-        <Header heading="Featured" seeAllHandler={seeAllHandler} />
+        <Heading heading="Featured" seeAllHandler={seeAllHandler} />
         <HorizontalScroll>{PRODUCTS.map(this._renderItem)}</HorizontalScroll>
       </Section>
     );

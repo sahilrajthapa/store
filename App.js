@@ -23,6 +23,7 @@ const Drawer = createDrawerNavigator({
   Notifications: {
     screen: NotificationsScreen,
   },
+  Cart: {screen: CartScreen},
 });
 
 const App = createStackNavigator(
@@ -31,7 +32,7 @@ const App = createStackNavigator(
     Featured: {
       screen: FeaturedScreen,
     },
-    Cart: {screen: CartScreen},
+
     Checkout: {screen: CheckoutScreen},
     Detail: {
       screen: DetailScreen,
@@ -39,19 +40,20 @@ const App = createStackNavigator(
     Home: {screen: Drawer},
   },
   {
-    defaultNavigationOptions: ({navigation}) => {
-      return {
-        headerLeft: () => (
-          <Icon
-            color="#a9a9a9"
-            name={'menu'}
-            iconStyle={{paddingLeft: 20}}
-            onPress={navigation.toggleDrawer}
-          />
-        ),
-        headerRight: () => <HeaderRight navigation={navigation} />,
-      };
-    },
+    // defaultNavigationOptions: ({navigation}) => {
+    //   return {
+    //     headerLeft: () => (
+    //       <Icon
+    //         color="#a9a9a9"
+    //         name={'menu'}
+    //         iconStyle={{paddingLeft: 20}}
+    //         onPress={navigation.toggleDrawer}
+    //       />
+    //     ),
+    //     headerRight: () => <HeaderRight navigation={navigation} />,
+    //   };
+    // },
+    headerMode: 'none',
   },
 );
 

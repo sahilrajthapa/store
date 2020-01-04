@@ -3,10 +3,11 @@ import {
   StyleSheet,
   SafeAreaView,
   StatusBar,
-  Image,
   ScrollView,
   Dimensions,
 } from 'react-native';
+
+import Header from './Header';
 
 const {height} = Dimensions.get('window');
 
@@ -21,10 +22,11 @@ export default class ContainerView extends Component {
 
   render() {
     const scrollEnabled = this.state.screenHeight > height;
-    const {children, customStyle} = this.props;
+    const {children, customStyle, navigation} = this.props;
     return (
       <SafeAreaView style={styles.container}>
         <StatusBar barStyle="light-content" backgroundColor="green" />
+        <Header navigation={navigation} />
         <ScrollView
           style={{flex: 1}}
           contentContainerStyle={[styles.scrollview, customStyle]}

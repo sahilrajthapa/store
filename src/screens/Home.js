@@ -10,20 +10,20 @@ import Featured from '../components/Featured';
 import BestSell from '../components/BestSell';
 
 export default class Home extends Component {
-  static navigationOptions = {
-    drawerLabel: 'Home',
-    drawerIcon: ({tintColor}) => (
-      <Image
-        source={require('../static/img/home-icon.png')}
-        style={[styles.icon, {tintColor: tintColor}]}
-      />
-    ),
-  };
+  // static navigationOptions = {
+  //   drawerLabel: 'Home',
+  //   // drawerIcon: ({tintColor}) => (
+  //   //   <Image
+  //   //     source={require('../static/img/home-icon.png')}
+  //   //     style={[styles.icon, {tintColor: tintColor}]}
+  //   //   />
+  //   // ),
+  // };
 
   render() {
     const {navigation} = this.props;
     return (
-      <ContainerView>
+      <ContainerView navigation={navigation}>
         <Grid>
           <Row style={styles.mainWrapper} size={100}>
             <Col>
