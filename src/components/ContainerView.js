@@ -27,6 +27,7 @@ export default class ContainerView extends Component {
       <SafeAreaView style={styles.container}>
         <StatusBar barStyle="light-content" backgroundColor="green" />
         <Header navigation={navigation} />
+
         <ScrollView
           style={{flex: 1}}
           contentContainerStyle={[styles.scrollview, customStyle]}

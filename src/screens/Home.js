@@ -12,12 +12,12 @@ import BestSell from '../components/BestSell';
 export default class Home extends Component {
   // static navigationOptions = {
   //   drawerLabel: 'Home',
-  //   // drawerIcon: ({tintColor}) => (
-  //   //   <Image
-  //   //     source={require('../static/img/home-icon.png')}
-  //   //     style={[styles.icon, {tintColor: tintColor}]}
-  //   //   />
-  //   // ),
+  //   drawerIcon: ({tintColor}) => (
+  //     <Image
+  //       source={require('../static/img/home-icon.png')}
+  //       style={[styles.icon, {tintColor: tintColor}]}
+  //     />
+  //   ),
   // };
 
   render() {
@@ -31,7 +31,7 @@ export default class Home extends Component {
               <Slider />
               <Categories />
               <Featured seeAllHandler={() => navigation.navigate('Featured')} />
-              <BestSell />
+              <BestSell seeAllHandler={() => navigation.navigate('BestSell')} />
             </Col>
           </Row>
         </Grid>

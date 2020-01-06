@@ -40,7 +40,7 @@ export default class Accordian extends Component {
 
 const styles = StyleSheet.create({
   title: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: 'bold',
     color: colors.black,
   },

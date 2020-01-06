@@ -31,7 +31,7 @@ export default class Featured extends Component {
     return (
       <ContainerView navigation={navigation}>
         <Section marginTop={20}>
-          <Heading heading="Featured" fontSize={30} screen />
+          <Heading heading="Best Sell" fontSize={30} screen />
           <View style={styles.cardWrapper}>
             {PRODUCTS.map(this._renderItem)}
           </View>

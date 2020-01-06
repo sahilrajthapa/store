@@ -10,20 +10,20 @@ import GradientBtn from '../components/GradientBtn';
 import {PRODUCTS} from '../static/entries';
 
 export default class Cart extends Component {
-  static navigationOptions = ({navigation}) => {
-    return {
-      headerLeft: () => (
-        <Icon
-          color="#a9a9a9"
-          name={'keyboard-backspace'}
-          iconStyle={{paddingLeft: 20}}
-          onPress={() => {
-            navigation.goBack();
-          }}
-        />
-      ),
-    };
-  };
+  // static navigationOptions = ({navigation}) => {
+  //   return {
+  //     headerLeft: () => (
+  //       <Icon
+  //         color="#a9a9a9"
+  //         name={'keyboard-backspace'}
+  //         iconStyle={{paddingLeft: 20}}
+  //         onPress={() => {
+  //           navigation.goBack();
+  //         }}
+  //       />
+  //     ),
+  //   };
+  // };
 
   _renderItem = (item, index) => {
     return (

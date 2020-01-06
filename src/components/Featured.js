@@ -13,8 +13,7 @@ export default class Featured extends Component {
         index={index}
         uri={item.image}
         title={item.title}
-        condtn={index === 0}
-        wrapperStyle={{marginLeft: 0}}
+        wrapperStyle={{...(index > 0 && {marginLeft: 15}), width: 175}}
         key={index}
       />
     );

@@ -9,12 +9,12 @@ export default function Card({index, condtn, wrapperStyle}) {
     <View style={{...styles.card, ...(condtn && wrapperStyle)}} key={index}>
       <View style={{width: '100%'}}>
         <Text style={styles.title}>
-          Lorem ipsum, or lipsum as it is some times known, is dummy text
+          Lorem ipsum, or lipsum as it is some times
         </Text>
         <Text style={styles.subTitle}>
           Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in
           laying out print, graphic or web designs. The passage is attributed to
-          an unknown typesetter in the 15th century who is.
+          an unknown typesetter.
         </Text>
         <View
           style={{
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     width: '100%',
     display: 'flex',
     flexDirection: 'row',
-    padding: 10,
+    padding: 15,
     shadowOpacity: 0.7,
     shadowRadius: 10,
     shadowOffset: {

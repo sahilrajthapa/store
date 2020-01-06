@@ -9,21 +9,15 @@ import {PRODUCTS} from '../static/entries';
 export default class BestSell extends Component {
   _renderItem = (item, index) => {
     return (
-      <Card
-        index={index}
-        uri={item.image}
-        title={item.title}
-        condtn={index % 2 === 0}
-        wrapperStyle={{marginLeft: 0}}
-        key={index}
-      />
+      <Card index={index} uri={item.image} title={item.title} key={index} />
     );
   };
 
   render() {
+    const {seeAllHandler} = this.props;
     return (
       <Section>
-        <Heading heading="Best Sell" />
+        <Heading heading="Best Sell" seeAllHandler={seeAllHandler} />
         <View style={styles.cardWrapper}>{PRODUCTS.map(this._renderItem)}</View>
       </Section>
     );
@@ -35,5 +29,6 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     flexWrap: 'wrap',
+    justifyContent: 'space-between',
   },
 });

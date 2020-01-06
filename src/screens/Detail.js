@@ -8,23 +8,21 @@ import Section from '../components/Section';
 import Accordion from '../components/Accordion';
 import InputGroup from '../components/InputGroup';
 import GradientBtn from '../components/GradientBtn';
-export default class Detail extends Component {
-  // static navigationOptions = ({navigation}) => {
-  //   return {
-  //     headerLeft: () => (
-  //       <Icon
-  //         color="#a9a9a9"
-  //         name={'keyboard-backspace'}
-  //         iconStyle={{paddingLeft: 20}}
-  //         onPress={() => {
-  //           navigation.goBack();
-  //         }}
-  //       />
-  //     ),
-  //   };
-  // };
 
+const data =
+  'Enrofloxacin works by inhibiting the process of DNA synthesis within the bacterial cells, which results in cell death. This drug is commonly used to treat a range of bacterial infections, including those of the skin, urinary tract, and respiratory system, as well as infections that result from wounds.';
+
+function InfoText({label, text}) {
+  return (
+    <View style={styles.infoWrapper}>
+      <Text style={styles.infoLabel}>{label}:</Text>
+      <Text style={styles.infoText}>{text}</Text>
+    </View>
+  );
+}
+export default class Detail extends Component {
   render() {
+    const {navigation} = this.props;
     return (
       <ContainerView
         navigation={navigation}
@@ -40,31 +38,17 @@ export default class Detail extends Component {
           </View>
           <Text style={styles.title}>Enrofloxacin Injection</Text>
           <View style={styles.descrpWrapper}>
-            <View style={styles.infoWrapper}>
-              <Text style={styles.infoLabel}>Category:</Text>
-              <Text style={styles.infoText}>Chicken, Turkey, Swine, Quail</Text>
-            </View>
-            <View style={styles.infoWrapper}>
-              <Text style={styles.infoLabel}>Product ID:</Text>
-              <Text style={styles.infoText}>1234</Text>
-            </View>
-            <View style={styles.infoWrapper}>
-              <Text style={styles.infoLabel}>Disease Type:</Text>
-              <Text style={styles.infoText}>
-                Necrotic enteritis , Transmissible enteritis
-              </Text>
-            </View>
+            <InfoText label="Category" text="Chicken, Turkey, Swine, Quail" />
+            <InfoText label="Product ID" text="1234" />
+            <InfoText
+              label="Disease Type"
+              text=" Necrotic enteritis , Transmissible enteritis"
+            />
           </View>
-          <Accordion
-            title="Description"
-            data="Enrofloxacin works by inhibiting the process of DNA synthesis within the bacterial cells, which results in cell death. This drug is commonly used to treat a range of bacterial infections, including those of the skin, urinary tract, and respiratory system, as well as infections that result from wounds."
-          />
-          <Accordion
-            title="Usage"
-            data="Enrofloxacin works by inhibiting the process of DNA synthesis within the bacterial cells, which results in cell death. This drug is commonly used to treat a range of bacterial infections, including those of the skin, urinary tract, and respiratory system, as well as infections that result from wounds."
-          />
+          <Accordion title="Description" data={data} />
+          <Accordion title="Usage" data={data} />
           <View style={styles.quantityWrapper}>
-            <Text style={{fontSize: 18, fontWeight: '700'}}>Quantity</Text>
+            <Text style={{fontSize: 16, fontWeight: '700'}}>Quantity</Text>
             <InputGroup />
           </View>
 
@@ -82,9 +66,9 @@ const styles = StyleSheet.create({
     height: 200,
   },
   title: {
-    padding: 30,
-
-    fontSize: 26,
+    paddingVertical: 20,
+    paddingHorizontal: 30,
+    fontSize: 24,
     fontWeight: '600',
   },
   descrpWrapper: {
@@ -96,19 +80,18 @@ const styles = StyleSheet.create({
   },
   infoWrapper: {
     display: 'flex',
-    // flexWrap: 'wrap',
     flexDirection: 'row',
     alignItems: 'flex-start',
   },
   infoLabel: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: '700',
     paddingRight: 5,
   },
   infoText: {
-    fontSize: 16,
+    fontSize: 14,
     width: 250,
-    paddingTop: 2,
+    paddingTop: 3,
   },
   quantityWrapper: {
     display: 'flex',

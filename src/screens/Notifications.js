@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, TouchableOpacity, StyleSheet} from 'react-native';
+import {View, Image, StyleSheet} from 'react-native';
 import {Icon} from 'react-native-elements';
 import ContainerView from '../components/ContainerView';
 import Section from '../components/Section';
@@ -9,19 +9,14 @@ import Notification from '../components/Notification';
 import {PRODUCTS} from '../static/entries';
 
 export default class Notifications extends Component {
-  // static navigationOptions = ({navigation}) => {
-  //   return {
-  //     headerLeft: () => (
-  //       <Icon
-  //         color="#a9a9a9"
-  //         name={'keyboard-backspace'}
-  //         iconStyle={{paddingLeft: 20}}
-  //         onPress={() => {
-  //           navigation.goBack();
-  //         }}
-  //       />
-  //     ),
-  //   };
+  // static navigationOptions = {
+  //   drawerLabel: 'Notifications',
+  //   drawerIcon: ({tintColor}) => (
+  //     <Image
+  //       source={require('../static/img/notif-icon.png')}
+  //       style={[styles.icon, {tintColor: tintColor}]}
+  //     />
+  //   ),
   // };
 
   _renderItem = (item, index) => {

@@ -17,17 +17,17 @@ export default function Header({navigation}) {
         }
       />
       <View style={{flexDirection: 'row', paddingRight: 20}}>
-        <Icon color={colors.gray} name={'add'} iconStyle={{paddingLeft: 7}} />
+        <Icon color={colors.gray} name={'add'} iconStyle={styles.icon} />
         <Icon
           color={colors.gray}
           name={'person-outline'}
-          iconStyle={{paddingLeft: 7}}
+          iconStyle={styles.icon}
         />
         <TouchableOpacity onPress={() => navigation.navigate('Notifications')}>
           <Icon
             color={colors.gray}
             name={'notifications-none'}
-            iconStyle={{paddingLeft: 7}}
+            iconStyle={styles.icon}
           />
         </TouchableOpacity>
 
@@ -35,7 +35,7 @@ export default function Header({navigation}) {
           <Icon
             color={colors.gray}
             name={'shopping-cart'}
-            iconStyle={{paddingLeft: 7}}
+            iconStyle={styles.icon}
           />
         </TouchableOpacity>
       </View>
@@ -58,4 +58,5 @@ const styles = StyleSheet.create({
     },
     elevation: 7,
   },
+  icon: {paddingLeft: 7},
 });
