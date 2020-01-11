@@ -32,8 +32,8 @@ export default function Card({index, condtn, wrapperStyle}) {
         iconStyle={{
           paddingLeft: 7,
           position: 'absolute',
-          top: -5,
-          right: 0,
+          top: -8,
+          right: -8,
         }}
       />
     </View>

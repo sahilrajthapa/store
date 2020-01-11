@@ -49,7 +49,7 @@ export default class Slider extends Component {
           <Col>
             <Row>
               <View style={{marginTop: 40}}>
-                <Text style={styles.sliderText}>How to Raise</Text>
+                <Text style={styles.sliderText}>How toRaise</Text>
                 <Text style={styles.sliderText}>a Chicken!</Text>
               </View>
             </Row>

@@ -15,13 +15,13 @@ export default function Card({index, uri, title, condtn, wrapperStyle}) {
         source={index % 2 === 0 ? img1 : img2}
         // borderRadius={8}
         style={{
-          width: 115,
+          width: '35%',
           height: 115,
         }}></Image>
-      <View style={{paddingHorizontal: 15, width: 245}}>
+      <View style={{paddingHorizontal: 15, width: '65%'}}>
         <Text style={styles.title}>{title}</Text>
-        <Text style={styles.subTitle}>Lotto.ltd</Text>
-        <View style={{width: 165}}>
+        <Text style={styles.subTitle}>Lotto.ltdaa</Text>
+        <View style={{width: '100%'}}>
           <InputGroup />
         </View>
       </View>
@@ -31,8 +31,8 @@ export default function Card({index, uri, title, condtn, wrapperStyle}) {
         iconStyle={{
           paddingLeft: 7,
           position: 'absolute',
-          top: -18,
-          right: 15,
+          top: -10,
+          right: -10,
         }}
       />
     </View>

@@ -82,6 +82,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'flex-start',
+    width: '100%',
   },
   infoLabel: {
     fontSize: 16,
@@ -90,7 +91,7 @@ const styles = StyleSheet.create({
   },
   infoText: {
     fontSize: 14,
-    width: 250,
+    width: '75%',
     paddingTop: 3,
   },
   quantityWrapper: {

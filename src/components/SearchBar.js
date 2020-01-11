@@ -1,34 +1,30 @@
 import React from 'react';
 import {View, TextInput, StyleSheet} from 'react-native';
-import {Col, Row} from 'react-native-easy-grid';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import colors from '../styles/color';
 
 function SearchBar() {
   return (
     <View style={styles.searchWrapper}>
-      <Row>
-        <Col size={0.6}>
-          <View style={styles.searchIconWrapper}>
-            <Icon name="search" size={30} color={colors.gray} />
-          </View>
-        </Col>
-        <Col size={3.4}>
-          <View style={styles.searchTextWrapper}>
-            <TextInput
-              style={styles.inputField}
-              placeholder="Search Your Product"
-              onChange={() => console.log('changed')}
-            />
-          </View>
-        </Col>
-      </Row>
+      <View style={styles.searchIconWrapper}>
+        <Icon name="search" size={30} color={colors.gray} />
+      </View>
+
+      <View style={styles.searchTextWrapper}>
+        <TextInput
+          style={styles.inputField}
+          placeholder="Search Your Product"
+          onChange={() => console.log('changed')}
+        />
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   searchWrapper: {
+    display: 'flex',
+    flexDirection: 'row',
     borderWidth: 2,
     borderColor: colors.white,
     borderRadius: 8,
