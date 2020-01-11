@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     width: 145,
     height: 85,
     margin: 10,
-    marginBottom: 0,
+    // marginBottom: 4,
   },
 
   textWrapper: {

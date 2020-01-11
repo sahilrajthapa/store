@@ -1,85 +1,194 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
-import {SliderBox} from 'react-native-image-slider-box';
-import {Grid, Col, Row} from 'react-native-easy-grid';
-import {Button} from 'react-native-elements';
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  Image,
+  Dimensions,
+  TouchableHighlight,
+} from 'react-native';
+
 import colors from '../styles/color';
+
+const slideWidth = parseInt(Dimensions.get('window').width - 40);
 
 export default class Slider extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      images: [
-        'https://source.unsplash.com/1024x768/?hen',
-        'https://source.unsplash.com/1024x768/?goat',
-        'https://source.unsplash.com/1024x768/?cow',
+      slides: [
+        {
+          img: 'https://source.unsplash.com/1024x768/?hen',
+          title: 'How to raise a chicken !',
+        },
+        {
+          img: 'https://source.unsplash.com/1024x768/?goat',
+          title: 'How to raise a goat !',
+        },
+        {
+          img: 'https://source.unsplash.com/1024x768/?cow',
+          title: 'How to raise a cow !',
+        },
       ],
+      selectedIndex: 0,
     };
+    this.scrollRef = React.createRef();
+    this._isMounted = false;
+  }
+
+  setSelectedIndex = event => {
+    // width of the viewSize
+    const viewSize = parseInt(event.nativeEvent.layoutMeasurement.width);
+
+    // get current position of the scrollview
+    const contentOffset = parseInt(event.nativeEvent.contentOffset.x);
+
+    const selectedIndex = contentOffset / viewSize;
+    this.setState({selectedIndex});
+  };
+
+  componentDidMount() {
+    this._isMounted = true;
+    setInterval(() => {
+      if (this._isMounted) {
+        this.setState(
+          prevState => ({
+            selectedIndex:
+              prevState.slides.length - 1 === prevState.selectedIndex
+                ? 0
+                : prevState.selectedIndex + 1,
+          }),
+          () => {
+            this.scrollRef.current.scrollTo({
+              animated: true,
+              y: 0,
+              x: slideWidth * this.state.selectedIndex,
+            });
+          },
+        );
+      }
+    }, 3000);
   }
 
   render() {
+    const {
+      state: {slides, selectedIndex},
+      setSelectedIndex,
+      scrollRef,
+    } = this;
     return (
       <View style={styles.sliderWrapper}>
-        <SliderBox
-          images={this.state.images}
-          sliderBoxHeight={225}
-          // onCurrentImagePressed={index =>
-          //   console.warn(`image ${index} pressed`)
-          // }
-          autoplay
-          dotColor="#6582E9"
-          inactiveDotColor="#90A4AE"
-          paginationBoxStyle={{
-            position: 'absolute',
-            bottom: 0,
-            padding: 0,
-            left: 0,
-            alignItems: 'center',
-            alignSelf: 'center',
-            justifyContent: 'center',
-            paddingVertical: 15,
-          }}
-        />
+        <ScrollView
+          horizontal
+          pagingEnabled
+          showsHorizontalScrollIndicator={false}
+          onMomentumScrollEnd={setSelectedIndex}
+          ref={scrollRef}>
+          {slides.map(slide => (
+            <View key={slide.img}>
+              <Image
+                source={{uri: slide.img}}
+                style={{width: slideWidth, height: 220}}
+              />
 
-        <Grid
-          style={{
-            position: 'absolute',
-          }}>
-          <Col></Col>
-          <Col>
-            <Row>
-              <View style={{marginTop: 40}}>
-                <Text style={styles.sliderText}>How toRaise</Text>
-                <Text style={styles.sliderText}>a Chicken!</Text>
+              <View style={[styles.overlay, styles.rightContent]}>
+                <View style={styles.textWrapper}>
+                  <Text
+                    style={{
+                      alignSelf: 'flex-start',
+                      color: colors.white,
+                      fontSize: 24,
+                    }}>
+                    {slide.title}
+                  </Text>
+                  <View style={{alignSelf: 'center'}}>
+                    <TouchableHighlight
+                      style={{
+                        height: 40,
+                        width: 100,
+                      }}
+                      onPress={() => console.log('Button pressed !!!')}>
+                      <Text
+                        style={{
+                          backgroundColor: '#83C025',
+                          textAlign: 'center',
+                          lineHeight: 40,
+                          color: colors.white,
+                          height: '100%',
+                          width: '100%',
+                        }}>
+                        DISCOVER
+                      </Text>
+                    </TouchableHighlight>
+                  </View>
+                </View>
               </View>
-            </Row>
-            <Row>
-              <View style={styles.buttonWrapper}>
-                <Button title="DISCOVER" raised buttonStyle={styles.button} />
+
+              <View style={styles.dotWrapper}>
+                {slides.map((slide, i) => (
+                  <View
+                    key={slide.img}
+                    style={{
+                      ...styles.dot,
+                      ...(selectedIndex === i && {
+                        backgroundColor: '#6582E9',
+                      }),
+                    }}
+                  />
+                ))}
               </View>
-            </Row>
-          </Col>
-        </Grid>
+            </View>
+          ))}
+        </ScrollView>
       </View>
     );
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
   }
 }
 
 const styles = StyleSheet.create({
   sliderWrapper: {
-    overflow: 'hidden',
     marginTop: 30,
   },
   sliderText: {
     color: colors.white,
     fontSize: 24,
   },
-  buttonWrapper: {marginLeft: 50, marginTop: 50},
-  button: {
-    paddingLeft: 20,
-    paddingRight: 20,
-    paddingBottom: 10,
-    paddingTop: 10,
-    backgroundColor: '#83C025',
+  overlay: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
+    backgroundColor: 'rgba(0,0,0,0.35)',
+  },
+  rightContent: {
+    display: 'flex',
+    alignItems: 'flex-end',
+    justifyContent: 'space-around',
+  },
+  textWrapper: {
+    display: 'flex',
+    justifyContent: 'space-around',
+    width: '50%',
+    height: '90%',
+  },
+  dotWrapper: {
+    position: 'absolute',
+    bottom: 20,
+    left: 20,
+    display: 'flex',
+    flexDirection: 'row',
+  },
+  dot: {
+    backgroundColor: colors.white,
+    borderRadius: 100,
+    height: 10,
+    width: 10,
+    marginRight: 7,
   },
 });
