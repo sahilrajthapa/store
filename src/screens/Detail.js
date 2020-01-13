@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {ImageBackground, Text, View, StyleSheet, Button} from 'react-native';
-import {Icon} from 'react-native-elements';
 import colors from '../styles/color';
 
 import ContainerView from '../components/ContainerView';

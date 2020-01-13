@@ -17,12 +17,18 @@ export default function Header({navigation}) {
         }
       />
       <View style={{flexDirection: 'row', paddingRight: 20}}>
-        <Icon color={colors.gray} name={'add'} iconStyle={styles.icon} />
-        <Icon
-          color={colors.gray}
-          name={'person-outline'}
-          iconStyle={styles.icon}
-        />
+        <TouchableOpacity onPress={() => navigation.navigate('Message')}>
+          <Icon color={colors.gray} name={'add'} iconStyle={styles.icon} />
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
+          <Icon
+            color={colors.gray}
+            name={'person-outline'}
+            iconStyle={styles.icon}
+          />
+        </TouchableOpacity>
+
         <TouchableOpacity onPress={() => navigation.navigate('Notifications')}>
           <Icon
             color={colors.gray}

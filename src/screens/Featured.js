@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {View, TouchableOpacity, StyleSheet} from 'react-native';
-import {Icon} from 'react-native-elements';
 import ContainerView from '../components/ContainerView';
 import Section from '../components/Section';
 import Heading from '../components/Heading';

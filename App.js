@@ -14,6 +14,8 @@ import BestSellScreen from './src/screens/BestSell';
 import DetailScreen from './src/screens/Detail';
 import CartScreen from './src/screens/Cart';
 import CheckoutScreen from './src/screens/Checkout';
+import MessageScreen from './src/screens/Message';
+import ProfileScreen from './src/screens/Profile';
 
 import {DrawerContent} from './src/components/DrawerContent';
 
@@ -48,22 +50,11 @@ const App = createStackNavigator(
     Detail: {
       screen: DetailScreen,
     },
+    Message: {screen: MessageScreen},
+    Profile: {screen: ProfileScreen},
     Home: {screen: Drawer},
   },
   {
-    // defaultNavigationOptions: ({navigation}) => {
-    //   return {
-    //     headerLeft: () => (
-    //       <Icon
-    //         color="#a9a9a9"
-    //         name={'menu'}
-    //         iconStyle={{paddingLeft: 20}}
-    //         onPress={navigation.toggleDrawer}
-    //       />
-    //     ),
-    //     headerRight: () => <HeaderRight navigation={navigation} />,
-    //   };
-    // },
     headerMode: 'none',
   },
 );
