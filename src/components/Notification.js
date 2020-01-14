@@ -4,27 +4,49 @@ import {Icon} from 'react-native-elements';
 
 import colors from '../styles/color';
 
-export default function Card({index, condtn, wrapperStyle}) {
+export default function Notification({
+  index,
+  condtn,
+  wrapperStyle,
+  detailPage,
+}) {
   return (
-    <View style={{...styles.card, ...(condtn && wrapperStyle)}} key={index}>
+    <View style={{...styles.card, ...(condtn && wrapperStyle)}}>
       <View style={{width: '100%'}}>
-        <Text style={styles.title}>
+        {detailPage && (
+          <View
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'center',
+            }}>
+            <Icon color={colors.gray} name={'access-time'} size={18} />
+            <Text style={styles.time}>58 minutes ago</Text>
+          </View>
+        )}
+        <Text
+          style={{
+            ...styles.title,
+            ...(detailPage && {marginTop: 20, marginBottom: 25}),
+          }}>
           Lorem ipsum, or lipsum as it is some times
         </Text>
         <Text style={styles.subTitle}>
-          Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in
-          laying out print, graphic or web designs. The passage is attributed to
-          an unknown typesetter.
+          {detailPage
+            ? 'Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter.Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter.'
+            : 'Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter.'}
         </Text>
-        <View
-          style={{
-            display: 'flex',
-            flexDirection: 'row',
-            alignItems: 'center',
-          }}>
-          <Icon color={colors.gray} name={'access-time'} size={18} />
-          <Text style={styles.time}>58 minutes ago</Text>
-        </View>
+        {!detailPage && (
+          <View
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'center',
+            }}>
+            <Icon color={colors.gray} name={'access-time'} size={18} />
+            <Text style={styles.time}>58 minutes ago</Text>
+          </View>
+        )}
       </View>
       <Icon
         color="#a9a9a9"

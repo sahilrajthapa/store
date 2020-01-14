@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import ContainerView from '../components/ContainerView';
 import Section from '../components/Section';
 import Heading from '../components/Heading';
-import MessageView from '../components/Message';
+import MessageForm from '../components/MessageForm';
 
 export default class Message extends Component {
   render() {
@@ -11,7 +11,7 @@ export default class Message extends Component {
       <ContainerView navigation={navigation}>
         <Section marginTop={20}>
           <Heading heading="Message" fontSize={30} screen />
-          <MessageView />
+          <MessageForm title="Message" />
         </Section>
       </ContainerView>
     );

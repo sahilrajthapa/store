@@ -1,34 +1,26 @@
 import React, {Component} from 'react';
-import {View, Image, StyleSheet} from 'react-native';
-import {Icon} from 'react-native-elements';
+import {View, TouchableOpacity, StyleSheet} from 'react-native';
 import ContainerView from '../components/ContainerView';
 import Section from '../components/Section';
 import Heading from '../components/Heading';
 
 import Notification from '../components/Notification';
-import {PRODUCTS} from '../static/entries';
 
 export default class Notifications extends Component {
-  // static navigationOptions = {
-  //   drawerLabel: 'Notifications',
-  //   drawerIcon: ({tintColor}) => (
-  //     <Image
-  //       source={require('../static/img/notif-icon.png')}
-  //       style={[styles.icon, {tintColor: tintColor}]}
-  //     />
-  //   ),
-  // };
-
   _renderItem = (item, index) => {
+    const {navigation} = this.props;
     return (
-      <Notification
-        key={index}
-        index={index}
-        uri={item.image}
-        title={item.title}
-        condtn={index === 0}
-        wrapperStyle={{marginTop: 15}}
-      />
+      <TouchableOpacity
+        onPress={() => {
+          navigation.navigate('NotificationDetail');
+        }}
+        key={index}>
+        <Notification
+          index={index}
+          condtn={index === 0}
+          wrapperStyle={{marginTop: 15}}
+        />
+      </TouchableOpacity>
     );
   };
 
@@ -39,7 +31,9 @@ export default class Notifications extends Component {
         <Section marginTop={20}>
           <Heading heading="Notifications" fontSize={30} screen />
           <View style={styles.cardWrapper}>
-            {PRODUCTS.map(this._renderItem)}
+            {Array(5)
+              .fill('')
+              .map(this._renderItem)}
           </View>
         </Section>
       </ContainerView>

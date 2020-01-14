@@ -34,26 +34,41 @@ export const ENTRIES1 = [
 export const PRODUCTS = [
   {
     title: 'Enrofloxacin Injection',
-    image: 'med1.jpg',
   },
   {
     title: 'Pill Pockets For chickens',
-    image: 'med2.jpg',
   },
   {
     title: 'Enrofloxacin Injection',
-    image: 'med1.jpg',
   },
   {
     title: 'Pill Pockets For chickens',
-    image: 'med2.jpg',
   },
   {
     title: 'Enrofloxacin Injection',
-    image: 'med1.jpg',
   },
   {
     title: 'Pill Pockets For chickens',
-    image: 'med2.jpg',
+  },
+];
+
+export const VET = [
+  {
+    title: 'Rushma Acharya',
+  },
+  {
+    title: 'Shree Subedi',
+  },
+  {
+    title: 'Rushma Acharya',
+  },
+  {
+    title: 'Shree Subedi',
+  },
+  {
+    title: 'Rushma Acharya',
+  },
+  {
+    title: 'Shree Subedi',
   },
 ];
