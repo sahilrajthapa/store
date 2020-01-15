@@ -19,15 +19,15 @@ export default class Slider extends Component {
     this.state = {
       slides: [
         {
-          img: 'https://source.unsplash.com/1024x768/?hen',
+          img: require('vetproject/src/static/img/hen.jpg'),
           title: 'How to raise a chicken !',
         },
         {
-          img: 'https://source.unsplash.com/1024x768/?goat',
+          img: require('vetproject/src/static/img/goat.jpg'),
           title: 'How to raise a goat !',
         },
         {
-          img: 'https://source.unsplash.com/1024x768/?cow',
+          img: require('vetproject/src/static/img/cow.jpg'),
           title: 'How to raise a cow !',
         },
       ],
@@ -88,7 +88,7 @@ export default class Slider extends Component {
           {slides.map(slide => (
             <View key={slide.img}>
               <Image
-                source={{uri: slide.img}}
+                source={slide.img}
                 style={{width: slideWidth, height: 220}}
               />
 
@@ -115,6 +115,8 @@ export default class Slider extends Component {
                           textAlign: 'center',
                           lineHeight: 40,
                           color: colors.white,
+                          // justifyContent: 'center',
+                          // alignItems: 'center',
                           height: '100%',
                           width: '100%',
                         }}>

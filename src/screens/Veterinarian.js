@@ -17,10 +17,9 @@ export default class Veterinarian extends Component {
         style={{width: '48%'}}>
         <Card
           index={index}
-          uri={item.image}
+          uri={item.img}
           title={item.title}
           wrapperStyle={{width: '100%'}}
-          vetPage
         />
       </TouchableOpacity>
     );

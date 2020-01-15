@@ -17,7 +17,7 @@ export default class Featured extends Component {
         style={{width: '48%'}}>
         <Card
           index={index}
-          uri={item.image}
+          uri={item.img}
           title={item.title}
           wrapperStyle={{width: '100%'}}
         />

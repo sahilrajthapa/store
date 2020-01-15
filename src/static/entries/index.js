@@ -34,41 +34,53 @@ export const ENTRIES1 = [
 export const PRODUCTS = [
   {
     title: 'Enrofloxacin Injection',
+    img: require('vetproject/src/static/img/med1.jpg'),
   },
   {
     title: 'Pill Pockets For chickens',
+    img: require('vetproject/src/static/img/med2.jpg'),
   },
   {
     title: 'Enrofloxacin Injection',
+    img: require('vetproject/src/static/img/med1.jpg'),
   },
   {
     title: 'Pill Pockets For chickens',
+    img: require('vetproject/src/static/img/med2.jpg'),
   },
   {
     title: 'Enrofloxacin Injection',
+    img: require('vetproject/src/static/img/med1.jpg'),
   },
   {
     title: 'Pill Pockets For chickens',
+    img: require('vetproject/src/static/img/med2.jpg'),
   },
 ];
 
 export const VET = [
   {
     title: 'Rushma Acharya',
+    img: require('vetproject/src/static/img/vet1.jpg'),
   },
   {
     title: 'Shree Subedi',
+    img: require('vetproject/src/static/img/vet2.jpg'),
   },
   {
     title: 'Rushma Acharya',
+    img: require('vetproject/src/static/img/vet1.jpg'),
   },
   {
     title: 'Shree Subedi',
+    img: require('vetproject/src/static/img/vet2.jpg'),
   },
   {
     title: 'Rushma Acharya',
+    img: require('vetproject/src/static/img/vet1.jpg'),
   },
   {
     title: 'Shree Subedi',
+    img: require('vetproject/src/static/img/vet2.jpg'),
   },
 ];

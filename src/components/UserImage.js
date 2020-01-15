@@ -11,7 +11,7 @@ export default function UserImage() {
         marginVertical: 15,
       }}>
       <Image
-        source={{uri: 'https://source.unsplash.com/1024x768/?man'}}
+        source={require('vetproject/src/static/img/vet2.jpg')}
         style={{width: 125, height: 125, borderRadius: 125}}
       />
     </View>

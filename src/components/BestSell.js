@@ -8,9 +8,7 @@ import {PRODUCTS} from '../static/entries';
 
 export default class BestSell extends Component {
   _renderItem = (item, index) => {
-    return (
-      <Card index={index} uri={item.image} title={item.title} key={index} />
-    );
+    return <Card index={index} uri={item.img} title={item.title} key={index} />;
   };
 
   render() {
