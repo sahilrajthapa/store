@@ -20,6 +20,7 @@ import ProfileScreen from './src/screens/Profile';
 import VeterinarianScreen from './src/screens/Veterinarian';
 import VeterinarianDetailScreen from './src/screens/VeterinarianDetail';
 import InformationsScreen from './src/screens/Informations';
+import ConfirmationScreen from './src/screens/Confirmation';
 
 import {DrawerContent} from './src/components/DrawerContent';
 
@@ -73,6 +74,9 @@ const App = createStackNavigator(
     },
     VeterinarianDetail: {screen: VeterinarianDetailScreen},
     Cart: {screen: CartScreen},
+    Confirmation: {
+      screen: ConfirmationScreen,
+    },
     Home: {screen: Drawer},
   },
   {

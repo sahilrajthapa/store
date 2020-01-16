@@ -79,7 +79,7 @@ export default class Checkout extends Component {
               name="Buy"
               raised
               borderRadius={5}
-              onPressHandler={() => {}}
+              onPressHandler={() => navigation.navigate('Confirmation')}
             />
           </View>
         </Section>
