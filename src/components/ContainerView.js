@@ -4,6 +4,7 @@ import {
   SafeAreaView,
   StatusBar,
   ScrollView,
+  View,
   Dimensions,
 } from 'react-native';
 
@@ -33,7 +34,7 @@ export default class ContainerView extends Component {
           contentContainerStyle={[styles.scrollview, customStyle]}
           scrollEnabled={scrollEnabled}
           onContentSizeChange={this.onContentSizeChange}>
-          {children}
+          <View style={styles.content}>{children}</View>
         </ScrollView>
       </SafeAreaView>
     );
@@ -43,11 +44,15 @@ export default class ContainerView extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // backgroundColor: '#F6F9EF',
   },
   scrollview: {
     flexGrow: 1,
     paddingLeft: 20,
     paddingRight: 20,
+  },
+  content: {
+    flexGrow: 1,
+    justifyContent: 'space-between',
+    paddingVertical: 5,
   },
 });

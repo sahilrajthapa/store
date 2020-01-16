@@ -44,7 +44,7 @@ export default class Balance extends Component {
                 borderBottomColor: colors.lightGray,
                 borderBottomWidth: 1,
                 paddingBottom: 10,
-                width: '30%',
+                width: '35%',
               }}>
               <Text style={styles.grayText}>Credit Balance</Text>
               <Text style={styles.text}>Rs 30,000.00</Text>
@@ -54,7 +54,7 @@ export default class Balance extends Component {
                 borderBottomColor: colors.lightGray,
                 borderBottomWidth: 1,
                 paddingBottom: 10,
-                width: '30%',
+                width: '35%',
               }}>
               <Text style={{...styles.grayText, textAlign: 'right'}}>
                 Debit Balance
