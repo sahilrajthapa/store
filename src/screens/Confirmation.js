@@ -7,8 +7,6 @@ export default class Confirmation extends Component {
   render() {
     const {navigation} = this.props;
     return (
-      //   <ContainerView navigation={navigation}>
-      // <Section marginTop={20}>
       <View style={styles.mainWrapper}>
         <View style={styles.contentWrapper}>
           <View style={styles.outerCircle}>

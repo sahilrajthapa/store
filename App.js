@@ -21,6 +21,7 @@ import VeterinarianScreen from './src/screens/Veterinarian';
 import VeterinarianDetailScreen from './src/screens/VeterinarianDetail';
 import InformationsScreen from './src/screens/Informations';
 import ConfirmationScreen from './src/screens/Confirmation';
+import ContactScreen from './src/screens/Contact';
 
 import {DrawerContent} from './src/components/DrawerContent';
 
@@ -45,6 +46,10 @@ const Drawer = createDrawerNavigator(
     Veterinarian: {
       screen: VeterinarianScreen,
       navigationOptions: {drawerLabel: 'Our Veterinarian'},
+    },
+    Contact: {
+      screen: ContactScreen,
+      navigationOptions: {drawerLabel: 'Contacts'},
     },
   },
   {
