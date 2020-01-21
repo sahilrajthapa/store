@@ -44,7 +44,7 @@ export default class Slider extends Component {
     // get current position of the scrollview
     const contentOffset = parseInt(event.nativeEvent.contentOffset.x);
 
-    const selectedIndex = contentOffset / viewSize;
+    const selectedIndex = Math.ceil(contentOffset / viewSize);
     this.setState({selectedIndex});
   };
 

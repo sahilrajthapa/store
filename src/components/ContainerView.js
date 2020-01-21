@@ -22,7 +22,8 @@ export default class ContainerView extends Component {
   };
 
   render() {
-    const scrollEnabled = this.state.screenHeight > height;
+    // excluding header height
+    const scrollEnabled = this.state.screenHeight > height - 55;
     const {children, customStyle, navigation} = this.props;
     return (
       <SafeAreaView style={styles.container}>
