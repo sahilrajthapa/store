@@ -1,21 +1,38 @@
 import React, {Component} from 'react';
 import {View, Text, KeyboardAvoidingView, StyleSheet} from 'react-native';
+import {connect} from 'react-redux';
 
+import {loginRequest} from '../actions/login';
 import InputField from '../components/InputField';
 import GradientBtn from '../components/GradientBtn';
 import colors from '../styles/color';
 
-export default class Login extends Component {
-  // static navigationOptions = {
-  //   header: null,
-  // };
+class Login extends Component {
+  state = {
+    email: '',
+    password: '',
+  };
+
+  onChangeTextHandler = (key, val) => {
+    this.setState({[key]: val});
+  };
 
   loginHandler = () => {
-    this.props.navigation.navigate('Home');
+    const {
+      state: {email, password},
+      props: {loginRequest, navigation},
+    } = this;
+    loginRequest({email, password});
+    navigation.navigate('Home');
   };
 
   render() {
-    const {loginHandler} = this;
+    const {
+      state: {email, password},
+      loginHandler,
+      onChangeTextHandler,
+    } = this;
+
     return (
       <KeyboardAvoidingView style={styles.wrapper} behavior="padding">
         <View style={styles.scrollViewWrapper}>
@@ -29,6 +46,9 @@ export default class Login extends Component {
               borderBottomColor={colors.gray}
               inputType="email"
               customStyle={{marginBottom: 30}}
+              onChangeTextHandler={onChangeTextHandler}
+              name="email"
+              value={email}
             />
             <InputField
               labelText="Password"
@@ -38,6 +58,9 @@ export default class Login extends Component {
               borderBottomColor={colors.gray}
               inputType="password"
               customStyle={{marginBottom: 60}}
+              onChangeTextHandler={onChangeTextHandler}
+              name="password"
+              value={password}
             />
             <View style={styles.buttonWrapper}>
               <GradientBtn
@@ -80,3 +103,9 @@ const styles = StyleSheet.create({
     paddingRight: 6,
   },
 });
+
+const mapStateToProps = state => ({
+  login: state.login,
+});
+
+export default connect(mapStateToProps, {loginRequest})(Login);
