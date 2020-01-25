@@ -28,6 +28,7 @@ class InputField extends Component {
       onChangeTextHandler,
       name,
       value,
+      error,
     } = this.props;
     const color = labelColor || colors.gray;
     const fontSize = labelTextSize || 14;
@@ -57,6 +58,7 @@ class InputField extends Component {
           onChangeText={text => onChangeTextHandler(name, text)}
           value={value}
         />
+        {error !== '' && <Text style={styles.error}>{error}</Text>}
       </View>
     );
   }
@@ -82,6 +84,10 @@ const styles = StyleSheet.create({
   showButtonText: {
     color: colors.black,
     fontWeight: '700',
+  },
+  error: {
+    color: '#ff0000',
+    marginTop: 7,
   },
 });
 export default InputField;

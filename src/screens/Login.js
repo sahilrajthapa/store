@@ -1,5 +1,12 @@
 import React, {Component} from 'react';
-import {View, Text, KeyboardAvoidingView, StyleSheet} from 'react-native';
+import {
+  View,
+  Text,
+  KeyboardAvoidingView,
+  StyleSheet,
+  ActivityIndicator,
+  Alert,
+} from 'react-native';
 import {connect} from 'react-redux';
 
 import {loginRequest} from '../actions/login';
@@ -9,29 +16,83 @@ import colors from '../styles/color';
 
 class Login extends Component {
   state = {
-    email: '',
+    email_or_username: '',
+    email_or_username_err: '',
     password: '',
+    password_err: '',
   };
 
   onChangeTextHandler = (key, val) => {
-    this.setState({[key]: val});
+    this.setState({[key]: val, [`${key}_err`]: ''});
+  };
+
+  validationHandler = () => {
+    const {
+      state: {email_or_username, password},
+    } = this;
+    const errors = {};
+
+    if (!email_or_username) {
+      errors.email_or_username_err = 'Email is required.';
+    }
+
+    if (!password) {
+      errors.password_err = 'Password is required';
+    }
+
+    if (Object.keys(errors).length > 0) {
+      this.setState({
+        ...errors,
+      });
+      return true;
+    }
+
+    return false;
   };
 
   loginHandler = () => {
     const {
-      state: {email, password},
+      state: {email_or_username, password},
       props: {loginRequest, navigation},
     } = this;
-    loginRequest({email, password});
-    navigation.navigate('Home');
+
+    const errors = this.validationHandler();
+
+    if (errors) return;
+
+    loginRequest({email_or_username, password});
   };
+
+  componentDidUpdate(prevProps) {
+    if (
+      this.props.loginFailure &&
+      this.props.loginFailure !== prevProps.loginFailure
+    ) {
+      return Alert.alert('Error', 'Unable to login with provided credentials.');
+    }
+  }
 
   render() {
     const {
-      state: {email, password},
+      state: {email_or_username, email_or_username_err, password, password_err},
+      props: {loginReq},
       loginHandler,
       onChangeTextHandler,
     } = this;
+
+    if (loginReq) {
+      return (
+        <View
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '100%',
+          }}>
+          <ActivityIndicator size="large" />
+        </View>
+      );
+    }
 
     return (
       <KeyboardAvoidingView style={styles.wrapper} behavior="padding">
@@ -47,8 +108,9 @@ class Login extends Component {
               inputType="email"
               customStyle={{marginBottom: 30}}
               onChangeTextHandler={onChangeTextHandler}
-              name="email"
-              value={email}
+              name="email_or_username"
+              value={email_or_username}
+              error={email_or_username_err}
             />
             <InputField
               labelText="Password"
@@ -61,6 +123,7 @@ class Login extends Component {
               onChangeTextHandler={onChangeTextHandler}
               name="password"
               value={password}
+              error={password_err}
             />
             <View style={styles.buttonWrapper}>
               <GradientBtn
@@ -105,7 +168,9 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => ({
-  login: state.login,
+  loginReq: state.login.loginRequest,
+  loginSuccess: state.login.loginSuccess,
+  loginFailure: state.login.loginFailure,
 });
 
 export default connect(mapStateToProps, {loginRequest})(Login);
