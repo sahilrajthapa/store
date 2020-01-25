@@ -8,12 +8,13 @@ import Notification from '../components/Notification';
 import MessageForm from '../components/MessageForm';
 
 export default class NotificationDetail extends Component {
-  _renderItem = (item, index) => {
+  _renderItem = () => {
     return (
       <Notification
-        index={index}
-        condtn={index === 0}
-        wrapperStyle={{marginTop: 15}}
+        // key={}
+        //   index={index}
+        //   condtn={index === 0}
+        //   wrapperStyle={{marginTop: 15}}
         detailPage
       />
     );
@@ -25,11 +26,7 @@ export default class NotificationDetail extends Component {
       <ContainerView navigation={navigation}>
         <Section marginTop={20}>
           <Heading heading="Notification" fontSize={30} screen />
-          <View style={styles.cardWrapper}>
-            {Array(1)
-              .fill('')
-              .map(this._renderItem)}
-          </View>
+          <View style={styles.cardWrapper}>{this._renderItem()}</View>
 
           <MessageForm title="Message" />
         </Section>
@@ -43,6 +40,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     flexWrap: 'wrap',
+    marginTop: 20,
   },
   buttonWrapper: {
     marginVertical: 20,

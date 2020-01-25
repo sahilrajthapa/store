@@ -23,6 +23,7 @@ import InformationsScreen from './src/screens/Informations';
 import ConfirmationScreen from './src/screens/Confirmation';
 import ContactScreen from './src/screens/Contact';
 
+import FindMeScreen from './src/screens/FindMe';
 import {DrawerContent} from './src/components/DrawerContent';
 
 const Drawer = createDrawerNavigator(
@@ -50,6 +51,10 @@ const Drawer = createDrawerNavigator(
     Contact: {
       screen: ContactScreen,
       navigationOptions: {drawerLabel: 'Contacts'},
+    },
+    FindMe: {
+      screen: FindMeScreen,
+      navigationOptions: {drawerLabel: 'Find Me'},
     },
   },
   {
