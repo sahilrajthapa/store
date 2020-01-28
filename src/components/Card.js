@@ -13,7 +13,7 @@ export default function Card({index, uri, title, wrapperStyle}) {
   return (
     <View style={{...styles.imgWrapper, ...wrapperStyle}} key={index}>
       <Image
-        source={uri}
+        source={{uri}}
         // source={
         //   vetPage
         //     ? index % 2 === 0
@@ -27,6 +27,7 @@ export default function Card({index, uri, title, wrapperStyle}) {
         style={{
           width: '100%',
           height: 200,
+          resizeMode: 'cover',
         }}></Image>
       <Text style={styles.text}>{title}</Text>
     </View>

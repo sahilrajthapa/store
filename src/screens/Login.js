@@ -16,9 +16,9 @@ import colors from '../styles/color';
 
 class Login extends Component {
   state = {
-    email_or_username: '',
+    email_or_username: 'sahilmr@gmail.com',
     email_or_username_err: '',
-    password: '',
+    password: '123456',
     password_err: '',
   };
 
@@ -37,7 +37,7 @@ class Login extends Component {
     }
 
     if (!password) {
-      errors.password_err = 'Password is required';
+      errors.password_err = 'Password is required.';
     }
 
     if (Object.keys(errors).length > 0) {
@@ -62,6 +62,13 @@ class Login extends Component {
 
     loginRequest({email_or_username, password});
   };
+
+  shouldComponentUpdate(nextProps) {
+    if (!nextProps.navigation.isFocused()) {
+      return false;
+    }
+    return true;
+  }
 
   componentDidUpdate(prevProps) {
     if (

@@ -33,7 +33,7 @@ export default class Categories extends Component {
         }}
         key={index}>
         <ImageBackground
-          source={{uri: item.image}}
+          source={{uri: item.photo_url}}
           imageStyle={{borderRadius: 8}}
           style={{
             width: '100%',
@@ -44,7 +44,7 @@ export default class Categories extends Component {
               ...styles.textWrapper,
               backgroundColor: `rgba(${getColor(index)})`,
             }}>
-            <Text style={styles.text}>{item.title}</Text>
+            <Text style={styles.text}>{item.name}</Text>
           </View>
         </ImageBackground>
       </View>
@@ -52,10 +52,11 @@ export default class Categories extends Component {
   };
 
   render() {
+    const {categories} = this.props;
     return (
       <Section>
         <Heading heading="Categories" />
-        <HorizontalScroll>{ENTRIES1.map(this._renderItem)}</HorizontalScroll>
+        <HorizontalScroll>{categories.map(this._renderItem)}</HorizontalScroll>
       </Section>
     );
   }

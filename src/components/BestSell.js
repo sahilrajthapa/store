@@ -4,19 +4,22 @@ import Section from './Section';
 import Heading from './Heading';
 
 import Card from './Card';
-import {PRODUCTS} from '../static/entries';
 
 export default class BestSell extends Component {
   _renderItem = (item, index) => {
-    return <Card index={index} uri={item.img} title={item.title} key={index} />;
+    return (
+      <Card index={index} uri={item.photo_url} title={item.name} key={index} />
+    );
   };
 
   render() {
-    const {seeAllHandler} = this.props;
+    const {seeAllHandler, bestSellItems} = this.props;
     return (
       <Section>
         <Heading heading="Best Sell" seeAllHandler={seeAllHandler} />
-        <View style={styles.cardWrapper}>{PRODUCTS.map(this._renderItem)}</View>
+        <View style={styles.cardWrapper}>
+          {bestSellItems.map(this._renderItem)}
+        </View>
       </Section>
     );
   }

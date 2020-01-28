@@ -1,14 +1,13 @@
 import React, {Component} from 'react';
 import {View, TouchableOpacity, StyleSheet} from 'react-native';
-import {Icon} from 'react-native-elements';
+import {connect} from 'react-redux';
 import ContainerView from '../components/ContainerView';
 import Section from '../components/Section';
 import Heading from '../components/Heading';
 
 import Card from '../components/Card';
-import {PRODUCTS} from '../static/entries';
 
-export default class Featured extends Component {
+class BestSell extends Component {
   _renderItem = (item, index) => {
     const {navigation} = this.props;
     return (
@@ -18,8 +17,8 @@ export default class Featured extends Component {
         style={{width: '48%'}}>
         <Card
           index={index}
-          uri={item.img}
-          title={item.title}
+          uri={item.photo_url}
+          title={item.name}
           wrapperStyle={{width: '100%'}}
         />
       </TouchableOpacity>
@@ -27,13 +26,13 @@ export default class Featured extends Component {
   };
 
   render() {
-    const {navigation} = this.props;
+    const {navigation, bestSellItems} = this.props;
     return (
       <ContainerView navigation={navigation}>
         <Section marginTop={20}>
           <Heading heading="Best Sell" fontSize={30} screen />
           <View style={styles.cardWrapper}>
-            {PRODUCTS.map(this._renderItem)}
+            {bestSellItems.map(this._renderItem)}
           </View>
         </Section>
       </ContainerView>
@@ -50,3 +49,11 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
 });
+
+const mapStateToProps = state => {
+  return {
+    bestSellItems: state.home.bestSellItems,
+  };
+};
+
+export default connect(mapStateToProps, null)(BestSell);

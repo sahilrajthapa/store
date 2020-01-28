@@ -37,28 +37,32 @@ class InputField extends Component {
 
     const {secureInput} = this.state;
     return (
-      <View style={[customStyle, styles.wrapper]}>
-        <Text style={[{color, fontSize}, styles.label]}>{labelText}</Text>
-        {inputType === 'password' ? (
-          <View style={styles.showButton}>
-            <Icon
-              color="#a9a9a9"
-              name={secureInput ? 'visibility' : 'visibility-off'}
-              onPress={this.toggleShowPassword}
-            />
-          </View>
-        ) : null}
-        <TextInput
-          autoCorrect={false}
-          style={[
-            {color: inputColor, borderBottomColor: borderBottom},
-            styles.inputField,
-          ]}
-          secureTextEntry={secureInput}
-          onChangeText={text => onChangeTextHandler(name, text)}
-          value={value}
-        />
-        {error !== '' && <Text style={styles.error}>{error}</Text>}
+      <View>
+        <View style={styles.wrapper}>
+          <Text style={[{color, fontSize}, styles.label]}>{labelText}</Text>
+          {inputType === 'password' ? (
+            <View style={styles.showButton}>
+              <Icon
+                color="#a9a9a9"
+                name={secureInput ? 'visibility' : 'visibility-off'}
+                onPress={this.toggleShowPassword}
+              />
+            </View>
+          ) : null}
+          <TextInput
+            autoCorrect={false}
+            style={[
+              {color: inputColor, borderBottomColor: borderBottom},
+              styles.inputField,
+            ]}
+            secureTextEntry={secureInput}
+            onChangeText={text => onChangeTextHandler(name, text)}
+            value={value}
+          />
+        </View>
+        <View style={customStyle}>
+          {error !== '' && <Text style={styles.error}>{error}</Text>}
+        </View>
       </View>
     );
   }

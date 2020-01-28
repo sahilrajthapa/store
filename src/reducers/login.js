@@ -2,7 +2,7 @@ import * as types from '../actions/login';
 
 const initialState = {
   loginRequest: false,
-  loginSucess: false,
+  loginSuccess: false,
   loginFailure: false,
 };
 
@@ -12,13 +12,13 @@ function loginReducer(state = initialState, action) {
       return {
         ...state,
         loginRequest: true,
-        loginSucess: false,
+        loginSuccess: false,
         loginFailure: false,
       };
     case types.LOGIN_SUCCESS:
       return {
         ...state,
-        loginSucess: true,
+        loginSuccess: true,
         loginRequest: false,
       };
 
