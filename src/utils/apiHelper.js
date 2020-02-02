@@ -22,14 +22,11 @@ export async function postApi(url, payload) {
     } else {
       token = await AsyncStorage.getItem('token');
     }
-    // await AsyncStorage.removeItem('token');
-    console.log('token', token);
 
     return await axios.post(url, payload, {
       headers: {Authorization: token},
     });
   } catch (err) {
-    console.log('err,', err.response);
     return err.response;
   }
 }

@@ -73,14 +73,17 @@ class Home extends Component {
             <Col>
               <SearchBar />
               <Slider />
-              <Categories categories={categories} />
+              <Categories
+                categories={categories}
+                seeAllHandler={() => navigation.navigate('Categories')}
+              />
               <Featured
                 featuredItems={featuredItems}
-                seeAllHandler={() => navigation.navigate('Featured')}
+                seeAllHandler={() => navigation.navigate('ProductList')}
               />
               <BestSell
                 bestSellItems={bestSellItems}
-                seeAllHandler={() => navigation.navigate('BestSell')}
+                seeAllHandler={() => navigation.navigate('ProductList')}
               />
             </Col>
           </Row>

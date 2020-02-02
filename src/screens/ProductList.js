@@ -7,12 +7,17 @@ import Heading from '../components/Heading';
 
 import Card from '../components/Card';
 
-class Featured extends Component {
+import {getProductsRequest} from '../actions/products';
+
+class ProductList extends Component {
+  componentDidMount() {
+    this.props.getProductsRequest();
+  }
   _renderItem = (item, index) => {
     const {navigation} = this.props;
     return (
       <TouchableOpacity
-        onPress={() => navigation.navigate('Detail')}
+        onPress={() => navigation.navigate('Detail', {productId: item.id})}
         key={index}
         style={{width: '48%'}}>
         <Card
@@ -26,13 +31,14 @@ class Featured extends Component {
   };
 
   render() {
-    const {navigation, featuredItems} = this.props;
+    const {navigation, products} = this.props;
+
     return (
       <ContainerView navigation={navigation}>
         <Section marginTop={20}>
-          <Heading heading="Featured" fontSize={30} screen />
+          <Heading heading="Products" fontSize={30} screen />
           <View style={styles.cardWrapper}>
-            {featuredItems.map(this._renderItem)}
+            {products.map(this._renderItem)}
           </View>
         </Section>
       </ContainerView>
@@ -52,8 +58,8 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => {
   return {
-    featuredItems: state.home.featuredItems,
+    products: state.products.products,
   };
 };
 
-export default connect(mapStateToProps, null)(Featured);
+export default connect(mapStateToProps, {getProductsRequest})(ProductList);

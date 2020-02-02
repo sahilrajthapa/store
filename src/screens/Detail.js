@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {ImageBackground, Text, View, StyleSheet, Button} from 'react-native';
+import {ImageBackground, Text, View, StyleSheet} from 'react-native';
+import {connect} from 'react-redux';
 import colors from '../styles/color';
 
 import ContainerView from '../components/ContainerView';
@@ -7,9 +8,14 @@ import Section from '../components/Section';
 import Accordion from '../components/Accordion';
 import InputGroup from '../components/InputGroup';
 import GradientBtn from '../components/GradientBtn';
+import {getProductById} from '../actions/products';
 
 const data =
   'Enrofloxacin works by inhibiting the process of DNA synthesis within the bacterial cells, which results in cell death. This drug is commonly used to treat a range of bacterial infections, including those of the skin, urinary tract, and respiratory system, as well as infections that result from wounds.';
+
+function getInfoText(arr) {
+  return arr.map(item => item.name).join(', ');
+}
 
 function InfoText({label, text}) {
   return (
@@ -19,9 +25,14 @@ function InfoText({label, text}) {
     </View>
   );
 }
-export default class Detail extends Component {
+class Detail extends Component {
+  componentDidMount() {
+    const {navigation, getProductById} = this.props;
+    getProductById({productId: navigation.getParam('productId')});
+  }
   render() {
-    const {navigation} = this.props;
+    const {navigation, product} = this.props;
+
     return (
       <ContainerView
         navigation={navigation}
@@ -29,22 +40,19 @@ export default class Detail extends Component {
         <Section propStyle={{marginBottom: 20}}>
           <View style={styles.imgWrapper}>
             <ImageBackground
-              source={require('../static/img/med1.jpg')}
+              source={{uri: product.photo_url}}
               style={{
                 width: '100%',
                 height: '100%',
               }}></ImageBackground>
           </View>
-          <Text style={styles.title}>Enrofloxacin Injection</Text>
+          <Text style={styles.title}>{product.name}</Text>
           <View style={styles.descrpWrapper}>
-            <InfoText label="Category" text="Chicken, Turkey, Swine, Quail" />
-            <InfoText label="Product ID" text="1234" />
-            <InfoText
-              label="Disease Type"
-              text=" Necrotic enteritis , Transmissible enteritis"
-            />
+            <InfoText label="Category" text={getInfoText(product.categories)} />
+            <InfoText label="Product ID" text={product.id} />
+            <InfoText label="Disease Type" text={getInfoText(product.types)} />
           </View>
-          <Accordion title="Description" data={data} />
+          <Accordion title="Description" data={product.description} />
           <Accordion title="Usage" data={data} />
           <View style={styles.quantityWrapper}>
             <Text style={{fontSize: 16, fontWeight: '700'}}>Quantity</Text>
@@ -111,3 +119,11 @@ const styles = StyleSheet.create({
     height: 24,
   },
 });
+
+const mapStateToProps = state => {
+  return {
+    product: state.products.selectedProduct,
+  };
+};
+
+export default connect(mapStateToProps, {getProductById})(Detail);

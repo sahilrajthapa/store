@@ -52,10 +52,10 @@ export default class Categories extends Component {
   };
 
   render() {
-    const {categories} = this.props;
+    const {categories, seeAllHandler} = this.props;
     return (
       <Section>
-        <Heading heading="Categories" />
+        <Heading heading="Categories" seeAllHandler={seeAllHandler} />
         <HorizontalScroll>{categories.map(this._renderItem)}</HorizontalScroll>
       </Section>
     );
