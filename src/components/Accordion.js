@@ -26,7 +26,9 @@ export default class Accordian extends Component {
         <View style={styles.parentHr} />
         {this.state.expanded && (
           <View style={styles.child}>
-            <Text>{this.props.data}</Text>
+            <Text>
+              {this.props.data ? this.props.data : 'No data available'}
+            </Text>
           </View>
         )}
       </View>

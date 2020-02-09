@@ -5,7 +5,7 @@ export default function UserInfo({label, value}) {
   return (
     <View style={styles.infoWrapper}>
       <Text style={styles.grayText}>{label}</Text>
-      <Text style={styles.text}>{value}</Text>
+      <Text style={styles.text}>{value ? value : 'No data available'}</Text>
     </View>
   );
 }

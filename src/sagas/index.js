@@ -3,6 +3,7 @@ import loginWatcher from './login';
 import homeWatcher from './home';
 import categoriesWatcher from './categories';
 import productsWatcher from './products';
+import profileWatcher from './profile';
 
 export function* rootSaga() {
   yield all([
@@ -10,5 +11,6 @@ export function* rootSaga() {
     fork(homeWatcher),
     fork(categoriesWatcher),
     fork(productsWatcher),
+    fork(profileWatcher),
   ]);
 }

@@ -14,7 +14,11 @@ const data =
   'Enrofloxacin works by inhibiting the process of DNA synthesis within the bacterial cells, which results in cell death. This drug is commonly used to treat a range of bacterial infections, including those of the skin, urinary tract, and respiratory system, as well as infections that result from wounds.';
 
 function getInfoText(arr) {
-  return arr.map(item => item.name).join(', ');
+  if (arr && arr.length > 0) {
+    return arr.map(item => item.name).join(', ');
+  } else {
+    return 'No data available';
+  }
 }
 
 function InfoText({label, text}) {
@@ -32,7 +36,6 @@ class Detail extends Component {
   }
   render() {
     const {navigation, product} = this.props;
-
     return (
       <ContainerView
         navigation={navigation}
@@ -53,7 +56,7 @@ class Detail extends Component {
             <InfoText label="Disease Type" text={getInfoText(product.types)} />
           </View>
           <Accordion title="Description" data={product.description} />
-          <Accordion title="Usage" data={data} />
+          <Accordion title="Usage" data={product.usage} />
           <View style={styles.quantityWrapper}>
             <Text style={{fontSize: 16, fontWeight: '700'}}>Quantity</Text>
             <InputGroup />

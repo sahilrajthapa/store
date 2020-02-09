@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, TouchableOpacity} from 'react-native';
 import Section from './Section';
 import Heading from './Heading';
 
@@ -7,8 +7,20 @@ import Card from './Card';
 
 export default class BestSell extends Component {
   _renderItem = (item, index) => {
+    const {navigation} = this.props;
     return (
-      <Card index={index} uri={item.photo_url} title={item.name} key={index} />
+      <TouchableOpacity
+        onPress={() => navigation.navigate('Detail', {productId: item.id})}
+        key={index}
+        style={{width: '48%'}}>
+        <Card
+          index={index}
+          uri={item.photo_url}
+          title={item.name}
+          key={index}
+          wrapperStyle={{width: '100%'}}
+        />
+      </TouchableOpacity>
     );
   };
 

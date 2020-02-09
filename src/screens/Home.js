@@ -80,10 +80,12 @@ class Home extends Component {
               <Featured
                 featuredItems={featuredItems}
                 seeAllHandler={() => navigation.navigate('ProductList')}
+                navigation={navigation}
               />
               <BestSell
                 bestSellItems={bestSellItems}
                 seeAllHandler={() => navigation.navigate('ProductList')}
+                navigation={navigation}
               />
             </Col>
           </Row>

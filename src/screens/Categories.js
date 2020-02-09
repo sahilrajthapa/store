@@ -42,7 +42,6 @@ class Categories extends Component {
 
   render() {
     const {navigation, categories} = this.props;
-    console.log('categories', categories);
     return (
       <ContainerView navigation={navigation}>
         <Section marginTop={20}>
