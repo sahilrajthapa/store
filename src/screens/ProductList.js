@@ -17,7 +17,7 @@ class ProductList extends Component {
     const {navigation} = this.props;
     return (
       <TouchableOpacity
-        onPress={() => navigation.navigate('Detail', {productId: item.id})}
+        onPress={() => navigation.navigate('Detail', {product: item})}
         key={index}
         style={{width: '48%'}}>
         <Card

@@ -9,9 +9,11 @@ function* loginRequest(action) {
 
   const response = yield call(postApi, '/api-auth/', payload);
 
-  if (response.status === 200) {
+  if (response && response.status === 200) {
     yield AsyncStorage.setItem('token', response.data.token);
+
     yield NavigationService.navigate('Home');
+
     yield put({type: types.LOGIN_SUCCESS});
   } else {
     yield put({type: types.LOGIN_FAILURE});

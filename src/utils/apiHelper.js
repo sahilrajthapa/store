@@ -8,7 +8,9 @@ export async function getApi(url) {
   try {
     const token = await AsyncStorage.getItem('token');
 
-    return await axios.get(url, {headers: {Authorization: token ? token : ''}});
+    return await axios.get(url, {
+      headers: {...(token && {Authorization: `Token ${token}`})},
+    });
   } catch (err) {
     return err.response;
   }
@@ -24,7 +26,7 @@ export async function postApi(url, payload) {
     }
 
     return await axios.post(url, payload, {
-      headers: {Authorization: token},
+      headers: {...(token && {Authorization: `Token ${token}`})},
     });
   } catch (err) {
     return err.response;

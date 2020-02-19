@@ -30,12 +30,14 @@ function InfoText({label, text}) {
   );
 }
 class Detail extends Component {
-  componentDidMount() {
-    const {navigation, getProductById} = this.props;
-    getProductById({productId: navigation.getParam('productId')});
-  }
+  // componentDidMount() {
+  //   const {navigation, getProductById} = this.props;
+  //   getProductById({productId: navigation.getParam('productId')});
+  // }
   render() {
-    const {navigation, product} = this.props;
+    const {navigation} = this.props;
+    const product = navigation.getParam('product');
+
     return (
       <ContainerView
         navigation={navigation}

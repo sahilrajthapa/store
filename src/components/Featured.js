@@ -11,7 +11,7 @@ export default class Featured extends Component {
     const {navigation} = this.props;
     return (
       <TouchableOpacity
-        onPress={() => navigation.navigate('Detail', {productId: item.id})}
+        onPress={() => navigation.navigate('Detail', {product: item})}
         key={index}>
         <Card
           index={index}
@@ -26,6 +26,7 @@ export default class Featured extends Component {
 
   render() {
     const {seeAllHandler, featuredItems} = this.props;
+
     return (
       <Section>
         <Heading heading="Featured" seeAllHandler={seeAllHandler} />
