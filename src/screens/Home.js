@@ -13,6 +13,11 @@ import BestSell from '../components/BestSell';
 
 import {getDashboardDataRequest} from '../actions/home';
 
+import {
+  searchProductRequest,
+  handleSearchTextChange,
+} from '../actions/products';
+
 const resetAction = StackActions.reset({
   index: 0,
   actions: [NavigationActions.navigate({routeName: 'Login'})],
@@ -43,6 +48,11 @@ class Home extends Component {
     this.props.navigation.dispatch(resetAction);
     return true;
   };
+
+  handleProductSearch = () => {
+    this.props.searchProductRequest();
+  };
+
   render() {
     const {
       navigation,
@@ -50,9 +60,13 @@ class Home extends Component {
       featuredItems,
       bestSellItems,
       requesting,
+      isSearching,
+      searchText,
+      handleSearchTextChange,
+      searchProductRequest,
     } = this.props;
 
-    if (requesting) {
+    if (requesting || isSearching) {
       return (
         <View
           style={{
@@ -71,7 +85,11 @@ class Home extends Component {
         <Grid>
           <Row style={styles.mainWrapper} size={100}>
             <Col>
-              <SearchBar />
+              <SearchBar
+                searchText={searchText}
+                handleSearchTextChange={handleSearchTextChange}
+                searchProductRequest={searchProductRequest}
+              />
               <Slider />
               <Categories
                 categories={categories}
@@ -108,10 +126,16 @@ const styles = StyleSheet.create({
 const mapStateToProps = state => {
   return {
     requesting: state.home.getDashboardDataRequest,
+    searchText: state.products.searchText,
+    isSearching: state.products.searchProductRequest,
     categories: state.home.categories,
     featuredItems: state.home.featuredItems,
     bestSellItems: state.home.bestSellItems,
   };
 };
 
-export default connect(mapStateToProps, {getDashboardDataRequest})(Home);
+export default connect(mapStateToProps, {
+  getDashboardDataRequest,
+  searchProductRequest,
+  handleSearchTextChange,
+})(Home);

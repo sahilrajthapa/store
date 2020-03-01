@@ -1,9 +1,12 @@
 import * as types from '../actions/home';
 
 const initialState = {
+  // event
   getDashboardDataRequest: false,
   getDashboardDataSuccess: false,
   getDashboardDataFailure: false,
+
+  // data
   categories: [],
   featuredItems: [],
   bestSellItems: [],

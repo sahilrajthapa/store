@@ -18,16 +18,16 @@ export async function getApi(url) {
 
 export async function postApi(url, payload) {
   try {
-    let token;
     if (url === '/api-auth/') {
-      token = '';
+      return await axios.post(url, payload);
     } else {
-      token = await AsyncStorage.getItem('token');
+      const token = await AsyncStorage.getItem('token');
+      return await axios.post(url, payload, {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      });
     }
-
-    return await axios.post(url, payload, {
-      headers: {...(token && {Authorization: `Token ${token}`})},
-    });
   } catch (err) {
     return err.response;
   }

@@ -1,20 +1,26 @@
 import React from 'react';
-import {View, TextInput, StyleSheet} from 'react-native';
+import {View, TextInput, StyleSheet, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import colors from '../styles/color';
 
-function SearchBar() {
+function SearchBar({searchText, handleSearchTextChange, searchProductRequest}) {
   return (
     <View style={styles.searchWrapper}>
       <View style={styles.searchIconWrapper}>
-        <Icon name="search" size={30} color={colors.gray} />
+        <TouchableOpacity
+          onPress={() => {
+            searchProductRequest({searchText});
+          }}>
+          <Icon name="search" size={30} color={colors.gray} />
+        </TouchableOpacity>
       </View>
 
       <View style={styles.searchTextWrapper}>
         <TextInput
           style={styles.inputField}
           placeholder="Search Your Product"
-          onChange={() => console.log('changed')}
+          value={searchText}
+          onChangeText={text => handleSearchTextChange(text)}
         />
       </View>
     </View>

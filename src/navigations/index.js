@@ -21,6 +21,7 @@ import InformationsScreen from '../screens/Informations';
 import ConfirmationScreen from '../screens/Confirmation';
 import ContactScreen from '../screens/Contact';
 import CategoriesScreen from '../screens/Categories';
+import SearchResultScreen from '../screens/SearchResult';
 
 import FindMeScreen from '../screens/FindMe';
 import {DrawerContent} from '../components/DrawerContent';
@@ -87,6 +88,7 @@ const navigations = createStackNavigator(
       screen: ConfirmationScreen,
     },
     Categories: {screen: CategoriesScreen},
+    SearchResult: {screen: SearchResultScreen},
     Home: {screen: Drawer},
   },
   {
