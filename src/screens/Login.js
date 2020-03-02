@@ -15,6 +15,8 @@ import GradientBtn from '../components/GradientBtn';
 import colors from '../styles/color';
 
 class Login extends Component {
+  _isMounted = false;
+
   state = {
     email_or_username: 'sahilmr@gmail.com',
     email_or_username_err: '',
@@ -68,6 +70,19 @@ class Login extends Component {
       return false;
     }
     return true;
+  }
+
+  componentDidMount() {
+    if (this.props.navigation.isFocused()) {
+      this._isMounted = true;
+    }
+
+    this.willFocusListener = this.props.navigation.addListener(
+      'willFocus',
+      () => {
+        this._isMounted && this.forceUpdate();
+      },
+    );
   }
 
   componentDidUpdate(prevProps) {
@@ -144,6 +159,11 @@ class Login extends Component {
         </View>
       </KeyboardAvoidingView>
     );
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
+    this.willFocusListener && this.willFocusListener.remove();
   }
 }
 

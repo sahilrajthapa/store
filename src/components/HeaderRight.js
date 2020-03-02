@@ -3,7 +3,6 @@ import {View, TouchableOpacity} from 'react-native';
 import {Icon} from 'react-native-elements';
 
 export default function HeaderRight({navigation}) {
-  console.log('navigation', navigation);
   return (
     <View style={{flexDirection: 'row', paddingRight: 20}}>
       <Icon color="#a9a9a9" name={'add'} iconStyle={{paddingLeft: 7}} />

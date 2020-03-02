@@ -1,5 +1,11 @@
 import React, {Component} from 'react';
-import {ImageBackground, Text, View, StyleSheet} from 'react-native';
+import {
+  ImageBackground,
+  Text,
+  View,
+  TouchableOpacity,
+  StyleSheet,
+} from 'react-native';
 import {connect} from 'react-redux';
 import colors from '../styles/color';
 
@@ -8,7 +14,10 @@ import Section from '../components/Section';
 import Accordion from '../components/Accordion';
 import InputGroup from '../components/InputGroup';
 import GradientBtn from '../components/GradientBtn';
-import {getProductById} from '../actions/products';
+import {Icon} from 'react-native-elements';
+// import {getProductById} from '../actions/products';
+import {postOrderRequest} from '../actions/order';
+import {addToCart} from '../actions/cart';
 
 const data =
   'Enrofloxacin works by inhibiting the process of DNA synthesis within the bacterial cells, which results in cell death. This drug is commonly used to treat a range of bacterial infections, including those of the skin, urinary tract, and respiratory system, as well as infections that result from wounds.';
@@ -34,8 +43,78 @@ class Detail extends Component {
   //   const {navigation, getProductById} = this.props;
   //   getProductById({productId: navigation.getParam('productId')});
   // }
+
+  state = {
+    quantity: 1,
+  };
+
+  onChangeHandler = quantity => {
+    this.setState({quantity: +quantity.replace(/[^0-9]/g, '')});
+  };
+
+  decrementHandler = () => {
+    this.setState(prevState => {
+      if (prevState.quantity === 0) return;
+      return {
+        quantity: prevState.quantity - 1,
+      };
+    });
+  };
+
+  incrementHandler = () => {
+    this.setState(prevState => ({
+      quantity: prevState.quantity + 1,
+    }));
+  };
+
+  postOrderHandler = () => {
+    const {id, name, photo, photo_url} = this.props.navigation.getParam(
+      'product',
+    );
+
+    this.props.postOrderRequest({
+      id,
+      name,
+      photo,
+      photo_url,
+      quantity: +this.state.quantity,
+    });
+  };
+
+  addToCartHandler = () => {
+    const {id, name, photo, photo_url} = this.props.navigation.getParam(
+      'product',
+    );
+
+    this.props.addToCart({
+      id,
+      name,
+      photo,
+      photo_url,
+      quantity: +this.state.quantity,
+    });
+
+    console.log('addtocartcalled');
+
+    // this.props.postOrderRequest({
+    //   id,
+    //   name,
+    //   photo,
+    //   photo_url,
+    //   quantity: +this.state.quantity,
+    // });
+  };
+
   render() {
-    const {navigation} = this.props;
+    const {
+      props: {navigation},
+      state: {quantity},
+      decrementHandler,
+      incrementHandler,
+      onChangeHandler,
+      postOrderHandler,
+      addToCartHandler,
+    } = this;
     const product = navigation.getParam('product');
 
     return (
@@ -50,6 +129,24 @@ class Detail extends Component {
                 width: '100%',
                 height: '100%',
               }}></ImageBackground>
+
+            <View
+              style={{
+                position: 'absolute',
+                right: 30,
+                bottom: 0,
+                zIndex: 99,
+                backgroundColor: '#83C025',
+                padding: 10,
+              }}>
+              <TouchableOpacity onPress={addToCartHandler}>
+                <Icon
+                  color={colors.white}
+                  name={'add-shopping-cart'}
+                  iconStyle={styles.icon}
+                />
+              </TouchableOpacity>
+            </View>
           </View>
           <Text style={styles.title}>{product.name}</Text>
           <View style={styles.descrpWrapper}>
@@ -61,10 +158,15 @@ class Detail extends Component {
           <Accordion title="Usage" data={product.usage} />
           <View style={styles.quantityWrapper}>
             <Text style={{fontSize: 16, fontWeight: '700'}}>Quantity</Text>
-            <InputGroup />
+            <InputGroup
+              quantity={quantity}
+              decrementHandler={decrementHandler}
+              incrementHandler={incrementHandler}
+              onChangeHandler={onChangeHandler}
+            />
           </View>
 
-          <GradientBtn name="BUY NOW" onPressHandler={() => {}} />
+          <GradientBtn name="BUY NOW" onPressHandler={postOrderHandler} />
         </Section>
       </ContainerView>
     );
@@ -131,4 +233,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, {getProductById})(Detail);
+export default connect(mapStateToProps, {postOrderRequest, addToCart})(Detail);

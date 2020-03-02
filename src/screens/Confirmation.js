@@ -23,7 +23,7 @@ export default class Confirmation extends Component {
               Confirmation
             </Text>
             <Text style={{fontSize: 16, textAlign: 'center'}}>
-              You have successfully completed payment procedure
+              Your order has been successfully completed.
             </Text>
           </View>
         </View>

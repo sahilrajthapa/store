@@ -21,8 +21,8 @@ function* searchProductRequest(action) {
   const response = yield call(getApi, `/products/?search=${searchText}`);
 
   if (response.status === 200) {
-    yield put({type: types.SEARCH_PRODUCT_SUCCESS, payload: response.data});
     yield NavigationService.navigate('SearchResult');
+    yield put({type: types.SEARCH_PRODUCT_SUCCESS, payload: response.data});
   } else {
     yield put({type: types.SEARCH_PRODUCT_FAILURE});
   }

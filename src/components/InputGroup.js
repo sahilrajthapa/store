@@ -4,52 +4,32 @@ import colors from '../styles/color';
 import {Icon} from 'react-native-elements';
 
 export default class Accordian extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      quantity: 1,
-    };
-  }
-
   render() {
+    const {
+      quantity = 1,
+      decrementHandler,
+      incrementHandler,
+      onChangeHandler,
+    } = this.props;
     return (
       <View style={styles.inputGroup}>
-        <TouchableOpacity onPress={this.decrementHandler} style={styles.input}>
+        <TouchableOpacity onPress={decrementHandler} style={styles.input}>
           <Icon color={colors.black} name={'remove'} size={20} />
         </TouchableOpacity>
 
         <TextInput
           keyboardType="numeric"
-          onChangeText={this.onChangeHandler}
-          value={this.state.quantity.toString()}
+          onChangeText={onChangeHandler}
+          value={quantity.toString()}
           style={styles.input}
           maxLength={8}
         />
-        <TouchableOpacity onPress={this.incrementHandler} style={styles.input}>
+        <TouchableOpacity onPress={incrementHandler} style={styles.input}>
           <Icon color={colors.black} name={'add'} size={20} />
         </TouchableOpacity>
       </View>
     );
   }
-
-  onChangeHandler = quantity => {
-    this.setState({quantity: +quantity.replace(/[^0-9]/g, '')});
-  };
-
-  decrementHandler = () => {
-    this.setState(prevState => {
-      if (prevState.quantity === 0) return;
-      return {
-        quantity: prevState.quantity - 1,
-      };
-    });
-  };
-
-  incrementHandler = () => {
-    this.setState(prevState => ({
-      quantity: prevState.quantity + 1,
-    }));
-  };
 }
 
 const styles = StyleSheet.create({

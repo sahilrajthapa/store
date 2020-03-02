@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {View, ActivityIndicator, StyleSheet, BackHandler} from 'react-native';
 import {connect} from 'react-redux';
 import {Col, Row, Grid} from 'react-native-easy-grid';
-import {StackActions, NavigationActions} from 'react-navigation';
+// import {StackActions, NavigationActions} from 'react-navigation';
 
 import ContainerView from '../components/ContainerView';
 import SearchBar from '../components/SearchBar';
@@ -18,40 +18,42 @@ import {
   handleSearchTextChange,
 } from '../actions/products';
 
-const resetAction = StackActions.reset({
-  index: 0,
-  actions: [NavigationActions.navigate({routeName: 'Login'})],
-});
+// const resetAction = StackActions.reset({
+//   index: 0,
+//   actions: [NavigationActions.navigate({routeName: 'Login'})],
+// });
 
 class Home extends Component {
-  componentDidMount() {
-    this.props.getDashboardDataRequest();
-    BackHandler.addEventListener(
-      'hardwareBackPress',
-      this.handleBackButtonPressAndroid,
-    );
-  }
+  _isMounted = false;
 
-  componentWillUnmount() {
-    BackHandler.removeEventListener(
-      'hardwareBackPress',
-      this.handleBackButtonPressAndroid,
-    );
-  }
-
-  handleBackButtonPressAndroid = () => {
-    if (!this.props.navigation.isFocused()) {
-      // The screen is not focused, so don't do anything
+  shouldComponentUpdate(nextProps) {
+    if (!nextProps.navigation.isFocused()) {
       return false;
     }
-
-    this.props.navigation.dispatch(resetAction);
     return true;
-  };
+  }
+
+  componentDidMount() {
+    if (this.props.navigation.isFocused()) {
+      this._isMounted = true;
+    }
+    this.props.getDashboardDataRequest();
+    this.willFocusListener = this.props.navigation.addListener(
+      'willFocus',
+      () => {
+        this._isMounted && this.forceUpdate();
+      },
+    );
+  }
 
   handleProductSearch = () => {
     this.props.searchProductRequest();
   };
+
+  componentWillUnmount() {
+    this._isMounted = false;
+    this.willFocusListener && this.willFocusListener.remove();
+  }
 
   render() {
     const {

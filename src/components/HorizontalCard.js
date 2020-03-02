@@ -1,40 +1,50 @@
 import React from 'react';
-import {View, Text, Image, StyleSheet} from 'react-native';
+import {View, Text, Image, TouchableOpacity, StyleSheet} from 'react-native';
 import {Icon} from 'react-native-elements';
 import InputGroup from './InputGroup';
 
 import colors from '../styles/color';
 
-const img1 = require('vetproject/src/static/img/med1.jpg');
-const img2 = require('vetproject/src/static/img/med2.jpg');
-
-export default function Card({index, uri, title, condtn, wrapperStyle}) {
+export default function Card({
+  index,
+  item,
+  condtn,
+  wrapperStyle,
+  removeHandler,
+}) {
   return (
     <View style={{...styles.card, ...(condtn && wrapperStyle)}} key={index}>
       <Image
-        source={index % 2 === 0 ? img1 : img2}
-        // borderRadius={8}
+        source={{uri: item.photo_url}}
         style={{
           width: '35%',
           height: 115,
         }}></Image>
       <View style={{paddingHorizontal: 15, width: '65%'}}>
-        <Text style={styles.title}>{title}</Text>
-        <Text style={styles.subTitle}>Lotto.ltdaa</Text>
+        <Text style={styles.title}>{item.name}</Text>
+        {/* <Text style={styles.subTitle}>Lotto.ltdaa</Text> */}
         <View style={{width: '100%'}}>
-          <InputGroup />
+          <InputGroup quantity={item.quantity} />
         </View>
       </View>
-      <Icon
-        color="#a9a9a9"
-        name={'clear'}
-        iconStyle={{
+      <View
+        style={{
           paddingLeft: 7,
           position: 'absolute',
-          top: -10,
-          right: -10,
-        }}
-      />
+          top: 5,
+          right: 5,
+        }}>
+        <TouchableOpacity
+          onPress={() => {
+            console.log('called');
+            removeHandler({id: item.id});
+          }}>
+          <Icon
+            // color="#a9a9a9"
+            name={'clear'}
+          />
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
@@ -61,6 +71,7 @@ const styles = StyleSheet.create({
     textTransform: 'capitalize',
     color: colors.black,
     marginTop: 5,
+    marginBottom: 15,
   },
   subTitle: {
     fontSize: 16,
