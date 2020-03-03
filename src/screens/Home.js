@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {View, ActivityIndicator, StyleSheet, BackHandler} from 'react-native';
 import {connect} from 'react-redux';
 import {Col, Row, Grid} from 'react-native-easy-grid';
-// import {StackActions, NavigationActions} from 'react-navigation';
 
 import ContainerView from '../components/ContainerView';
 import SearchBar from '../components/SearchBar';
@@ -17,11 +16,6 @@ import {
   searchProductRequest,
   handleSearchTextChange,
 } from '../actions/products';
-
-// const resetAction = StackActions.reset({
-//   index: 0,
-//   actions: [NavigationActions.navigate({routeName: 'Login'})],
-// });
 
 class Home extends Component {
   _isMounted = false;

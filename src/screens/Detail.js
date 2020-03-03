@@ -16,7 +16,7 @@ import InputGroup from '../components/InputGroup';
 import GradientBtn from '../components/GradientBtn';
 import {Icon} from 'react-native-elements';
 // import {getProductById} from '../actions/products';
-import {postOrderRequest} from '../actions/order';
+import {postOrderRequest} from '../actions/orders';
 import {addToCart} from '../actions/cart';
 
 const data =
@@ -73,11 +73,12 @@ class Detail extends Component {
     );
 
     this.props.postOrderRequest({
-      id,
-      name,
-      photo,
-      photo_url,
-      quantity: +this.state.quantity,
+      rows: [
+        {
+          quantity: +this.state.quantity,
+          product: {id, name, photo, photo_url},
+        },
+      ],
     });
   };
 
@@ -93,16 +94,6 @@ class Detail extends Component {
       photo_url,
       quantity: +this.state.quantity,
     });
-
-    console.log('addtocartcalled');
-
-    // this.props.postOrderRequest({
-    //   id,
-    //   name,
-    //   photo,
-    //   photo_url,
-    //   quantity: +this.state.quantity,
-    // });
   };
 
   render() {

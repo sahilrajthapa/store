@@ -2,29 +2,35 @@ import React, {Component} from 'react';
 import {View, TextInput, TouchableOpacity, StyleSheet} from 'react-native';
 import colors from '../styles/color';
 import {Icon} from 'react-native-elements';
-
-export default class Accordian extends Component {
+class InputGroup extends Component {
   render() {
     const {
-      quantity = 1,
+      quantity,
       decrementHandler,
       incrementHandler,
       onChangeHandler,
+      editable,
     } = this.props;
+
     return (
       <View style={styles.inputGroup}>
-        <TouchableOpacity onPress={decrementHandler} style={styles.input}>
+        <TouchableOpacity
+          style={styles.input}
+          {...(editable && {onPress: decrementHandler})}>
           <Icon color={colors.black} name={'remove'} size={20} />
         </TouchableOpacity>
 
         <TextInput
           keyboardType="numeric"
-          onChangeText={onChangeHandler}
           value={quantity.toString()}
           style={styles.input}
           maxLength={8}
+          editable={editable}
+          {...(editable && {onChangeText: onChangeHandler})}
         />
-        <TouchableOpacity onPress={incrementHandler} style={styles.input}>
+        <TouchableOpacity
+          style={styles.input}
+          {...(editable && {onPress: incrementHandler})}>
           <Icon color={colors.black} name={'add'} size={20} />
         </TouchableOpacity>
       </View>
@@ -49,3 +55,10 @@ const styles = StyleSheet.create({
     // height: '100%',
   },
 });
+
+InputGroup.defaultProps = {
+  quantity: 1,
+  editable: true,
+};
+
+export default InputGroup;

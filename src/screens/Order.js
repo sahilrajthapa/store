@@ -1,36 +1,43 @@
 import React, {Component} from 'react';
 import {View, TouchableOpacity, StyleSheet} from 'react-native';
-import {Icon} from 'react-native-elements';
+import {connect} from 'react-redux';
 import ContainerView from '../components/ContainerView';
 import Section from '../components/Section';
 import Heading from '../components/Heading';
 
 import HorizontalCard from '../components/HorizontalCard';
-import GradientBtn from '../components/GradientBtn';
-import {PRODUCTS} from '../static/entries';
 
-export default class Order extends Component {
+import {getOrderRequest} from '../actions/orders';
+
+class Order extends Component {
+  componentDidMount() {
+    this.props.getOrderRequest();
+  }
   _renderItem = (item, index) => {
     return (
       <HorizontalCard
         key={index}
         index={index}
-        uri={item.image}
-        title={item.title}
         condtn={index === 0}
         wrapperStyle={{marginTop: 15}}
+        editable={false}
+        productPhoto={item.product.photo_url}
+        productName={item.product.name}
+        productId={item.product.id}
+        productQuantity={item.quantity}
       />
     );
   };
 
   render() {
-    const {navigation} = this.props;
+    const {navigation, orders} = this.props;
+
     return (
       <ContainerView navigation={navigation}>
         <Section marginTop={20}>
           <Heading heading="My Orders" fontSize={30} screen />
           <View style={styles.cardWrapper}>
-            {PRODUCTS.map(this._renderItem)}
+            {orders.map(order => order.rows.map(this._renderItem))}
           </View>
         </Section>
       </ContainerView>
@@ -48,3 +55,11 @@ const styles = StyleSheet.create({
     marginVertical: 20,
   },
 });
+
+const mapStateToProps = state => {
+  return {
+    orders: state.orders.orders,
+  };
+};
+
+export default connect(mapStateToProps, {getOrderRequest})(Order);

@@ -7,44 +7,58 @@ import colors from '../styles/color';
 
 export default function Card({
   index,
-  item,
+
   condtn,
   wrapperStyle,
-  removeHandler,
+  editable,
+  productPhoto,
+  productName,
+  productId,
+  productQuantity,
+  removeFromCart,
+  handleQuantityChange,
+  handleQuantityDecrement,
+  handleQuantityIncrement,
 }) {
   return (
     <View style={{...styles.card, ...(condtn && wrapperStyle)}} key={index}>
       <Image
-        source={{uri: item.photo_url}}
+        source={{uri: productPhoto}}
         style={{
           width: '35%',
           height: 115,
         }}></Image>
       <View style={{paddingHorizontal: 15, width: '65%'}}>
-        <Text style={styles.title}>{item.name}</Text>
+        <Text style={styles.title}>{productName}</Text>
         {/* <Text style={styles.subTitle}>Lotto.ltdaa</Text> */}
         <View style={{width: '100%'}}>
-          <InputGroup quantity={item.quantity} />
+          <InputGroup
+            editable={editable}
+            quantity={productQuantity}
+            decrementHandler={() => handleQuantityDecrement({id: productId})}
+            incrementHandler={() => handleQuantityIncrement({id: productId})}
+            onChangeHandler={value =>
+              handleQuantityChange({id: productId, value})
+            }
+          />
         </View>
       </View>
-      <View
-        style={{
-          paddingLeft: 7,
-          position: 'absolute',
-          top: 5,
-          right: 5,
-        }}>
-        <TouchableOpacity
-          onPress={() => {
-            console.log('called');
-            removeHandler({id: item.id});
+      {editable && (
+        <View
+          style={{
+            paddingLeft: 7,
+            position: 'absolute',
+            top: 5,
+            right: 5,
           }}>
-          <Icon
-            // color="#a9a9a9"
-            name={'clear'}
-          />
-        </TouchableOpacity>
-      </View>
+          <TouchableOpacity
+            onPress={() => {
+              removeFromCart({id: item.id});
+            }}>
+            <Icon name={'clear'} />
+          </TouchableOpacity>
+        </View>
+      )}
     </View>
   );
 }

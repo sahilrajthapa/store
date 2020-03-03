@@ -8,27 +8,62 @@ import Heading from '../components/Heading';
 
 import HorizontalCard from '../components/HorizontalCard';
 import GradientBtn from '../components/GradientBtn';
-import {removeFromCart} from '../actions/cart';
+import {
+  removeFromCart,
+  handleQuantityChange,
+  handleQuantityDecrement,
+  handleQuantityIncrement,
+} from '../actions/cart';
+
+import {postOrderRequest} from '../actions/orders';
 
 class Cart extends Component {
+  postOrderHandler = () => {
+    const {
+      props: {cart, postOrderRequest},
+    } = this;
+
+    postOrderRequest({
+      rows: cart.map(item => {
+        const {quantity, ...product} = item;
+        return {
+          product,
+          quantity,
+        };
+      }),
+    });
+  };
+
   _renderItem = (item, index) => {
-    const {removeFromCart} = this.props;
+    const {
+      removeFromCart,
+      handleQuantityChange,
+      handleQuantityDecrement,
+      handleQuantityIncrement,
+    } = this.props;
     return (
       <HorizontalCard
         key={index}
         index={index}
-        // uri={item.photo_url}
-        // title={item.name}
-        item={item}
         condtn={index === 0}
         wrapperStyle={{marginTop: 15}}
-        removeHandler={removeFromCart}
+        productPhoto={item.photo_url}
+        productName={item.name}
+        productId={item.id}
+        productQuantity={item.quantity}
+        removeFromCart={removeFromCart}
+        handleQuantityChange={handleQuantityChange}
+        handleQuantityDecrement={handleQuantityDecrement}
+        handleQuantityIncrement={handleQuantityIncrement}
       />
     );
   };
 
   render() {
-    const {navigation, cart} = this.props;
+    const {
+      props: {navigation, cart},
+      postOrderHandler,
+    } = this;
 
     return (
       <ContainerView navigation={navigation}>
@@ -65,7 +100,7 @@ class Cart extends Component {
                 name="Continue"
                 raised
                 borderRadius={5}
-                onPressHandler={() => navigation.navigate('Checkout')}
+                onPressHandler={postOrderHandler}
               />
             </View>
           )}
@@ -92,4 +127,10 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, {removeFromCart})(Cart);
+export default connect(mapStateToProps, {
+  removeFromCart,
+  handleQuantityChange,
+  handleQuantityDecrement,
+  handleQuantityIncrement,
+  postOrderRequest,
+})(Cart);

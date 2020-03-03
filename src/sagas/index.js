@@ -4,7 +4,7 @@ import homeWatcher from './home';
 import categoriesWatcher from './categories';
 import productsWatcher from './products';
 import profileWatcher from './profile';
-import orderWatcher from './order';
+import orderWatcher from './orders';
 
 export function* rootSaga() {
   yield all([
