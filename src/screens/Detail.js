@@ -5,6 +5,7 @@ import {
   View,
   TouchableOpacity,
   StyleSheet,
+  Picker,
 } from 'react-native';
 import {connect} from 'react-redux';
 import colors from '../styles/color';
@@ -18,9 +19,6 @@ import {Icon} from 'react-native-elements';
 // import {getProductById} from '../actions/products';
 import {postOrderRequest} from '../actions/orders';
 import {addToCart} from '../actions/cart';
-
-const data =
-  'Enrofloxacin works by inhibiting the process of DNA synthesis within the bacterial cells, which results in cell death. This drug is commonly used to treat a range of bacterial infections, including those of the skin, urinary tract, and respiratory system, as well as infections that result from wounds.';
 
 function getInfoText(arr) {
   if (arr && arr.length > 0) {
@@ -39,13 +37,10 @@ function InfoText({label, text}) {
   );
 }
 class Detail extends Component {
-  // componentDidMount() {
-  //   const {navigation, getProductById} = this.props;
-  //   getProductById({productId: navigation.getParam('productId')});
-  // }
-
   state = {
     quantity: 1,
+    customer: null,
+    customerErr: null,
   };
 
   onChangeHandler = quantity => {
@@ -67,18 +62,31 @@ class Detail extends Component {
     }));
   };
 
-  postOrderHandler = () => {
-    const {id, name, photo, photo_url} = this.props.navigation.getParam(
-      'product',
-    );
+  selectCustomerHandler = customer => {
+    if (customer === '0') return;
+    this.setState({customer, customerErr: null});
+  };
 
-    this.props.postOrderRequest({
+  postOrderHandler = () => {
+    const {
+      state: {quantity, customer},
+      props: {organization, navigation, postOrderRequest},
+    } = this;
+    if (organization.role === 'Marketing' && !customer) {
+      return this.setState({
+        customerErr: 'Please select a customer.',
+      });
+    }
+    const {id, name, photo, photo_url} = navigation.getParam('product');
+
+    postOrderRequest({
       rows: [
         {
-          quantity: +this.state.quantity,
+          quantity: +quantity,
           product: {id, name, photo, photo_url},
         },
       ],
+      customer,
     });
   };
 
@@ -98,11 +106,12 @@ class Detail extends Component {
 
   render() {
     const {
-      props: {navigation},
-      state: {quantity},
+      props: {navigation, organization, customers},
+      state: {quantity, customer, customerErr},
       decrementHandler,
       incrementHandler,
       onChangeHandler,
+      selectCustomerHandler,
       postOrderHandler,
       addToCartHandler,
     } = this;
@@ -157,6 +166,33 @@ class Detail extends Component {
             />
           </View>
 
+          {organization.role === 'Marketing' && (
+            <View
+              style={{
+                paddingHorizontal: 30,
+                marginBottom: 50,
+              }}>
+              <Text style={{fontSize: 16, fontWeight: '700'}}>
+                Select Customer
+              </Text>
+              <Picker
+                selectedValue={customer}
+                style={{height: 50, width: '100%'}}
+                onValueChange={selectCustomerHandler}>
+                <Picker.Item label="Select" value="0" />
+                {customers.map(customer => (
+                  <Picker.Item
+                    key={customer.id}
+                    label={customer.user.username}
+                    value={customer.id}
+                  />
+                ))}
+              </Picker>
+
+              {customerErr && <Text style={{color: 'red'}}>{customerErr}</Text>}
+            </View>
+          )}
+
           <GradientBtn name="BUY NOW" onPressHandler={postOrderHandler} />
         </Section>
       </ContainerView>
@@ -207,7 +243,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30,
     paddingVertical: 10,
     marginTop: 50,
-    marginBottom: 70,
+    marginBottom: 25,
     borderColor: colors.lightGray,
     borderBottomWidth: 2,
     borderTopWidth: 2,
@@ -221,6 +257,8 @@ const styles = StyleSheet.create({
 const mapStateToProps = state => {
   return {
     product: state.products.selectedProduct,
+    organization: state.login.organization,
+    customers: state.customers.customers,
   };
 };
 

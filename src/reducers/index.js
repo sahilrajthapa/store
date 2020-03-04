@@ -6,6 +6,7 @@ import productsReducer from './products';
 import profileReducer from './profile';
 import cartReducer from './cart';
 import ordersReducer from './orders';
+import customersReducer from './customers';
 
 const rootReducer = combineReducers({
   login: loginReducer,
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   profile: profileReducer,
   cart: cartReducer,
   orders: ordersReducer,
+  customers: customersReducer,
 });
 
 export default rootReducer;

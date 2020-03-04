@@ -4,6 +4,7 @@ const initialState = {
   loginRequest: false,
   loginSuccess: false,
   loginFailure: false,
+  oranization: {},
 };
 
 function loginReducer(state = initialState, action) {
@@ -20,6 +21,7 @@ function loginReducer(state = initialState, action) {
         ...state,
         loginSuccess: true,
         loginRequest: false,
+        organization: action.payload.organization,
       };
 
     case types.LOGIN_FAILURE:

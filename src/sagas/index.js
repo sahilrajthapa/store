@@ -5,6 +5,7 @@ import categoriesWatcher from './categories';
 import productsWatcher from './products';
 import profileWatcher from './profile';
 import orderWatcher from './orders';
+import customersWatcher from './customers';
 
 export function* rootSaga() {
   yield all([
@@ -14,5 +15,6 @@ export function* rootSaga() {
     fork(productsWatcher),
     fork(profileWatcher),
     fork(orderWatcher),
+    fork(customersWatcher),
   ]);
 }

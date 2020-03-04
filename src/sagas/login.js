@@ -14,7 +14,7 @@ function* loginRequest(action) {
 
     yield NavigationService.navigate('Home');
 
-    yield put({type: types.LOGIN_SUCCESS});
+    yield put({type: types.LOGIN_SUCCESS, payload: response.data});
   } else {
     yield put({type: types.LOGIN_FAILURE});
   }

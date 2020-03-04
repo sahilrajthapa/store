@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, ActivityIndicator, StyleSheet, BackHandler} from 'react-native';
+import {View, ActivityIndicator, StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 import {Col, Row, Grid} from 'react-native-easy-grid';
 
@@ -11,6 +11,7 @@ import Featured from '../components/Featured';
 import BestSell from '../components/BestSell';
 
 import {getDashboardDataRequest} from '../actions/home';
+import {getCustomersRequest} from '../actions/customers';
 
 import {
   searchProductRequest,
@@ -32,6 +33,7 @@ class Home extends Component {
       this._isMounted = true;
     }
     this.props.getDashboardDataRequest();
+    this.props.getCustomersRequest();
     this.willFocusListener = this.props.navigation.addListener(
       'willFocus',
       () => {
@@ -132,6 +134,7 @@ const mapStateToProps = state => {
 
 export default connect(mapStateToProps, {
   getDashboardDataRequest,
+  getCustomersRequest,
   searchProductRequest,
   handleSearchTextChange,
 })(Home);

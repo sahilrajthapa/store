@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import {View, TouchableOpacity, StyleSheet, Text} from 'react-native';
-import {Icon} from 'react-native-elements';
+import {View, Picker, StyleSheet, Text} from 'react-native';
 import {connect} from 'react-redux';
 import ContainerView from '../components/ContainerView';
 import Section from '../components/Section';
@@ -18,11 +17,27 @@ import {
 import {postOrderRequest} from '../actions/orders';
 
 class Cart extends Component {
+  state = {
+    customer: null,
+    customerErr: null,
+  };
+
+  selectCustomerHandler = customer => {
+    if (customer === '0') return;
+    this.setState({customer, customerErr: null});
+  };
+
   postOrderHandler = () => {
     const {
-      props: {cart, postOrderRequest},
+      state: {customer},
+      props: {cart, organization, postOrderRequest},
     } = this;
 
+    if (organization.role === 'Marketing' && !customer) {
+      return this.setState({
+        customerErr: 'Please select a customer.',
+      });
+    }
     postOrderRequest({
       rows: cart.map(item => {
         const {quantity, ...product} = item;
@@ -31,6 +46,7 @@ class Cart extends Component {
           quantity,
         };
       }),
+      customer,
     });
   };
 
@@ -61,7 +77,9 @@ class Cart extends Component {
 
   render() {
     const {
-      props: {navigation, cart},
+      state: {customer, customerErr},
+      props: {navigation, cart, organization, customers},
+      selectCustomerHandler,
       postOrderHandler,
     } = this;
 
@@ -94,6 +112,32 @@ class Cart extends Component {
           {cart.length > 0 && (
             <View style={styles.cardWrapper}>{cart.map(this._renderItem)}</View>
           )}
+
+          {cart.length > 0 && organization.role === 'Marketing' && (
+            <View
+              style={{
+                marginVertical: 20,
+              }}>
+              <Text style={{fontSize: 16, fontWeight: '700'}}>
+                Select Customer
+              </Text>
+              <Picker
+                selectedValue={customer}
+                style={{height: 50, width: '100%'}}
+                onValueChange={selectCustomerHandler}>
+                <Picker.Item label="Select" value="0" />
+                {customers.map(customer => (
+                  <Picker.Item
+                    key={customer.id}
+                    label={customer.user.username}
+                    value={customer.id}
+                  />
+                ))}
+              </Picker>
+
+              {customerErr && <Text style={{color: 'red'}}>{customerErr}</Text>}
+            </View>
+          )}
           {cart.length > 0 && (
             <View style={styles.buttonWrapper}>
               <GradientBtn
@@ -124,6 +168,8 @@ const styles = StyleSheet.create({
 const mapStateToProps = state => {
   return {
     cart: state.cart.cart,
+    organization: state.login.organization,
+    customers: state.customers.customers,
   };
 };
 
