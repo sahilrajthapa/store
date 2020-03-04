@@ -7,10 +7,9 @@ import colors from '../styles/color';
 
 export default function Card({
   index,
-
   condtn,
   wrapperStyle,
-  editable,
+  editable = true,
   productPhoto,
   productName,
   productId,
@@ -53,7 +52,7 @@ export default function Card({
           }}>
           <TouchableOpacity
             onPress={() => {
-              removeFromCart({id: item.id});
+              removeFromCart({id: productId});
             }}>
             <Icon name={'clear'} />
           </TouchableOpacity>
