@@ -8,7 +8,8 @@ import {
   Alert,
 } from 'react-native';
 import {connect} from 'react-redux';
-
+import {NavigationActions} from 'react-navigation';
+import AsyncStorage from '@react-native-community/async-storage';
 import {loginRequest} from '../actions/login';
 import InputField from '../components/InputField';
 import GradientBtn from '../components/GradientBtn';

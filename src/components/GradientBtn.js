@@ -3,7 +3,6 @@ import React from 'react';
 import {StyleSheet} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {Button} from 'react-native-elements';
-import {Colors} from 'react-native/Libraries/NewAppScreen';
 
 const GradientButton = ({name, raised, borderRadius, onPressHandler}) => (
   <Button
@@ -15,7 +14,7 @@ const GradientButton = ({name, raised, borderRadius, onPressHandler}) => (
     }}
     title={name}
     titleStyle={{
-      color: Colors.white,
+      color: 'white',
       fontSize: 16,
       paddingTop: 7,
       paddingBottom: 7,

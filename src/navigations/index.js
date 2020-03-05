@@ -1,4 +1,4 @@
-import {createAppContainer} from 'react-navigation';
+import {createAppContainer, createSwitchNavigator} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
 import {createDrawerNavigator} from 'react-navigation-drawer';
 
@@ -24,6 +24,7 @@ import CategoriesScreen from '../screens/Categories';
 import SearchResultScreen from '../screens/SearchResult';
 
 import FindMeScreen from '../screens/FindMe';
+import AuthLoadingScreen from '../screens/AuthLoading';
 import {DrawerContent} from '../components/DrawerContent';
 
 const Drawer = createDrawerNavigator(
@@ -65,9 +66,9 @@ const Drawer = createDrawerNavigator(
   },
 );
 
-const navigations = createStackNavigator(
+const AppStack = createStackNavigator(
   {
-    Login: {screen: LoginScreen},
+    // Login: {screen: LoginScreen},
     ProductList: {
       screen: ProductListScreen,
     },
@@ -92,8 +93,25 @@ const navigations = createStackNavigator(
     Home: {screen: Drawer},
   },
   {
+    initialRouteName: 'Home',
     headerMode: 'none',
   },
 );
 
+const AuthStack = createStackNavigator(
+  {Login: {screen: LoginScreen}},
+  {headerMode: 'none'},
+);
+
+const navigations = createSwitchNavigator(
+  {
+    AuthLoading: AuthLoadingScreen,
+    App: AppStack,
+    Auth: AuthStack,
+  },
+  {
+    initialRouteName: 'AuthLoading',
+    headerMode: 'none',
+  },
+);
 export default createAppContainer(navigations);

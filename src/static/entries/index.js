@@ -61,26 +61,26 @@ export const PRODUCTS = [
 export const VET = [
   {
     title: 'Rushma Acharya',
-    img: require('vetproject/src/static/img/vet1.jpg'),
+    img: 'https://i.imgur.com/lsBhVK1.jpg',
   },
   {
     title: 'Shree Subedi',
-    img: require('vetproject/src/static/img/vet2.jpg'),
+    img: 'https://i.imgur.com/IszqBP2.jpg',
   },
   {
     title: 'Rushma Acharya',
-    img: require('vetproject/src/static/img/vet1.jpg'),
+    img: 'https://i.imgur.com/lsBhVK1.jpg',
   },
   {
     title: 'Shree Subedi',
-    img: require('vetproject/src/static/img/vet2.jpg'),
+    img: 'https://i.imgur.com/IszqBP2.jpg',
   },
   {
     title: 'Rushma Acharya',
-    img: require('vetproject/src/static/img/vet1.jpg'),
+    img: 'https://i.imgur.com/lsBhVK1.jpg',
   },
   {
     title: 'Shree Subedi',
-    img: require('vetproject/src/static/img/vet2.jpg'),
+    img: 'https://i.imgur.com/IszqBP2.jpg',
   },
 ];
