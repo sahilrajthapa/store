@@ -17,7 +17,7 @@ import OrderScreen from '../screens/Order';
 import ProfileScreen from '../screens/Profile';
 import VeterinarianScreen from '../screens/Veterinarian';
 import VeterinarianDetailScreen from '../screens/VeterinarianDetail';
-import InformationsScreen from '../screens/Informations';
+import InformationScreen from '../screens/Information';
 import ConfirmationScreen from '../screens/Confirmation';
 import ContactScreen from '../screens/Contact';
 import CategoriesScreen from '../screens/Categories';
@@ -44,7 +44,7 @@ const Drawer = createDrawerNavigator(
       screen: OrderScreen,
       navigationOptions: {drawerLabel: 'My Orders'},
     },
-    Informations: {screen: InformationsScreen},
+    Information: {screen: InformationScreen},
     Veterinarian: {
       screen: VeterinarianScreen,
       navigationOptions: {drawerLabel: 'Our Veterinarian'},

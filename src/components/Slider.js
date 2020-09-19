@@ -120,7 +120,7 @@ export default class Slider extends Component {
                           height: '100%',
                           width: '100%',
                         }}>
-                        DISCOVER
+                        Read More
                       </Text>
                     </TouchableHighlight>
                   </View>

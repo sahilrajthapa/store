@@ -6,8 +6,16 @@ import Heading from '../components/Heading';
 
 import Notification from '../components/Notification';
 import MessageForm from '../components/MessageForm';
+import GradientBtn from '../components/GradientBtn';
 
 export default class NotificationDetail extends Component {
+  state = {showForm: false};
+
+  toggleShowForm = () => {
+    this.setState(prevState => ({
+      showForm: !prevState.showForm,
+    }));
+  };
   _renderItem = () => {
     return (
       <Notification
@@ -21,14 +29,23 @@ export default class NotificationDetail extends Component {
   };
 
   render() {
-    const {navigation} = this.props;
+    const {
+      props: {navigation},
+      state: {showForm},
+      toggleShowForm,
+    } = this;
     return (
       <ContainerView navigation={navigation}>
         <Section marginTop={20}>
           <Heading heading="Notification" fontSize={30} screen />
           <View style={styles.cardWrapper}>{this._renderItem()}</View>
-
-          <MessageForm title="Message" />
+          <GradientBtn
+            name={showForm ? 'Ignore' : 'Respond'}
+            raised
+            borderRadius={5}
+            onPressHandler={toggleShowForm}
+          />
+          {showForm && <MessageForm title="Message" />}
         </Section>
       </ContainerView>
     );

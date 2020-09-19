@@ -57,6 +57,7 @@ class Home extends Component {
       categories,
       featuredItems,
       bestSellItems,
+      information,
       requesting,
       isSearching,
       searchText,
@@ -88,7 +89,7 @@ class Home extends Component {
                 handleSearchTextChange={handleSearchTextChange}
                 searchProductRequest={searchProductRequest}
               />
-              <Slider />
+              {information.length > 0 && <Slider />}
               <Categories
                 categories={categories}
                 seeAllHandler={() => navigation.navigate('Categories')}
@@ -122,19 +123,33 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => {
+  const {
+    home: {
+      getDashboardDataRequest: requesting,
+      categories,
+      featuredItems,
+      bestSellItems,
+    },
+    products: {searchText, searchProductRequest: isSearching},
+    information: {information},
+  } = state;
   return {
-    requesting: state.home.getDashboardDataRequest,
-    searchText: state.products.searchText,
-    isSearching: state.products.searchProductRequest,
-    categories: state.home.categories,
-    featuredItems: state.home.featuredItems,
-    bestSellItems: state.home.bestSellItems,
+    requesting,
+    searchText,
+    isSearching,
+    categories,
+    featuredItems,
+    bestSellItems,
+    information,
   };
 };
 
-export default connect(mapStateToProps, {
-  getDashboardDataRequest,
-  getCustomersRequest,
-  searchProductRequest,
-  handleSearchTextChange,
-})(Home);
+export default connect(
+  mapStateToProps,
+  {
+    getDashboardDataRequest,
+    getCustomersRequest,
+    searchProductRequest,
+    handleSearchTextChange,
+  },
+)(Home);

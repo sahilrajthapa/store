@@ -72,11 +72,11 @@ class Detail extends Component {
       state: {quantity, customer},
       props: {organization, navigation, postOrderRequest},
     } = this;
-    if (organization.role === 'Marketing' && !customer) {
-      return this.setState({
-        customerErr: 'Please select a customer.',
-      });
-    }
+    // if (organization.role === 'Marketing' && !customer) {
+    //   return this.setState({
+    //     customerErr: 'Please select a customer.',
+    //   });
+    // }
     const {id, name, photo, photo_url} = navigation.getParam('product');
 
     postOrderRequest({
@@ -111,7 +111,7 @@ class Detail extends Component {
       decrementHandler,
       incrementHandler,
       onChangeHandler,
-      selectCustomerHandler,
+      // selectCustomerHandler,
       postOrderHandler,
       addToCartHandler,
     } = this;
@@ -128,7 +128,8 @@ class Detail extends Component {
               style={{
                 width: '100%',
                 height: '100%',
-              }}></ImageBackground>
+              }}
+            />
 
             <View
               style={{
@@ -166,7 +167,7 @@ class Detail extends Component {
             />
           </View>
 
-          {organization.role === 'Marketing' && (
+          {/* {organization.role === 'Marketing' && (
             <View
               style={{
                 paddingHorizontal: 30,
@@ -191,9 +192,9 @@ class Detail extends Component {
 
               {customerErr && <Text style={{color: 'red'}}>{customerErr}</Text>}
             </View>
-          )}
+          )} */}
 
-          <GradientBtn name="BUY NOW" onPressHandler={postOrderHandler} />
+          <GradientBtn name="BUY NOW" onPressHandler={addToCartHandler} />
         </Section>
       </ContainerView>
     );
@@ -262,4 +263,7 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, {postOrderRequest, addToCart})(Detail);
+export default connect(
+  mapStateToProps,
+  {postOrderRequest, addToCart},
+)(Detail);

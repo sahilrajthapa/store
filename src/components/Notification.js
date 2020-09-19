@@ -13,7 +13,7 @@ export default function Notification({
   return (
     <View style={{...styles.card, ...(condtn && wrapperStyle)}}>
       <View style={{width: '100%'}}>
-        {detailPage && (
+        {/* {detailPage && (
           <View
             style={{
               display: 'flex',
@@ -23,11 +23,11 @@ export default function Notification({
             <Icon color={colors.gray} name={'access-time'} size={18} />
             <Text style={styles.time}>58 minutes ago</Text>
           </View>
-        )}
+        )} */}
         <Text
           style={{
             ...styles.title,
-            ...(detailPage && {marginTop: 20, marginBottom: 25}),
+            // ...(detailPage && {marginTop: 15, marginBottom: 25}),
           }}>
           Lorem ipsum, or lipsum as it is some times
         </Text>
@@ -36,19 +36,18 @@ export default function Notification({
             ? 'Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter.Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter.'
             : 'Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter.'}
         </Text>
-        {!detailPage && (
-          <View
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-              alignItems: 'center',
-            }}>
-            <Icon color={colors.gray} name={'access-time'} size={18} />
-            <Text style={styles.time}>58 minutes ago</Text>
-          </View>
-        )}
+
+        <View
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+          }}>
+          <Icon color={colors.gray} name={'access-time'} size={18} />
+          <Text style={styles.time}>58 minutes ago</Text>
+        </View>
       </View>
-      <Icon
+      {/* <Icon
         color="#a9a9a9"
         name={'clear'}
         iconStyle={{
@@ -57,7 +56,7 @@ export default function Notification({
           top: -8,
           right: -8,
         }}
-      />
+      /> */}
     </View>
   );
 }
@@ -84,7 +83,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     textTransform: 'capitalize',
     color: colors.black,
-    marginTop: 10,
+    // marginTop: 10,
     marginBottom: 10,
   },
   subTitle: {

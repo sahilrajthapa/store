@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import ContainerView from '../components/ContainerView';
 import Section from '../components/Section';
 import Heading from '../components/Heading';
-
+import CategoryCard from '../components/CategoryCard';
 import Card from '../components/Card';
 import colors from '../styles/color';
 import {getCategoriesRequest} from '../actions/categories';
@@ -28,18 +28,6 @@ class Categories extends Component {
     this.props.getCategoriesRequest();
   }
 
-  _renderItem = (item, index) => {
-    return (
-      <Card
-        key={index}
-        index={index}
-        uri={item.photo_url}
-        title={item.name}
-        wrapperStyle={{width: '48%'}}
-      />
-    );
-  };
-
   render() {
     const {navigation, categories} = this.props;
     return (
@@ -47,7 +35,14 @@ class Categories extends Component {
         <Section marginTop={20}>
           <Heading heading="Categories" fontSize={30} screen />
           <View style={styles.cardWrapper}>
-            {categories.map(this._renderItem)}
+            {categories.map((category, index) => (
+              <CategoryCard
+                key={index}
+                index={index}
+                wrapperStyle={styles.wrapperStyle}
+                category={category}
+              />
+            ))}
           </View>
         </Section>
       </ContainerView>
@@ -56,12 +51,11 @@ class Categories extends Component {
 }
 
 const styles = StyleSheet.create({
-  // imgWrapper: {
-  //   width: 145,
-  //   height: 85,
-  //   margin: 10,
-  //   // marginBottom: 4,
-  // },
+  wrapperStyle: {
+    width: '48%',
+    height: 85,
+    marginTop: 15,
+  },
   cardWrapper: {
     display: 'flex',
     flexDirection: 'row',
@@ -90,4 +84,7 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, {getCategoriesRequest})(Categories);
+export default connect(
+  mapStateToProps,
+  {getCategoriesRequest},
+)(Categories);
