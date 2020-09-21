@@ -1,12 +1,11 @@
 import * as types from '../actions/home';
 
 const initialState = {
-  // event
   getDashboardDataRequest: false,
   getDashboardDataSuccess: false,
   getDashboardDataFailure: false,
 
-  // data
+  information: [],
   categories: [],
   featuredItems: [],
   bestSellItems: [],
@@ -29,11 +28,18 @@ function loginReducer(state = initialState, action = {}) {
         bestSellItems: action.payload.best_sell_items,
       };
 
-    case types.GET_DASHBOARD_DATA_SUCCESS:
+    case types.GET_DASHBOARD_DATA_FAILURE:
       return {
         ...state,
         getDashboardDataFailure: true,
         getDashboardDataRequest: false,
+      };
+
+    case types.GET_INFORMATION_SUCCESS:
+      console.log('payload', action.payload);
+      return {
+        ...state,
+        information: action.payload,
       };
 
     default: {

@@ -10,7 +10,7 @@ import Categories from '../components/Categories';
 import Featured from '../components/Featured';
 import BestSell from '../components/BestSell';
 
-import {getDashboardDataRequest} from '../actions/home';
+import {getDashboardDataRequest, getInformationRequest} from '../actions/home';
 import {getCustomersRequest} from '../actions/customers';
 
 import {
@@ -33,7 +33,12 @@ class Home extends Component {
       this._isMounted = true;
     }
     this.props.getDashboardDataRequest();
-    this.props.getCustomersRequest();
+    // this.props.getCustomersRequest();
+    this.props.getInformationRequest({
+      filter_type: 0,
+      selected: 2,
+      per_page: 3,
+    });
     this.willFocusListener = this.props.navigation.addListener(
       'willFocus',
       () => {
@@ -89,7 +94,7 @@ class Home extends Component {
                 handleSearchTextChange={handleSearchTextChange}
                 searchProductRequest={searchProductRequest}
               />
-              {information.length > 0 && <Slider />}
+              {information.length > 0 && <Slider information={information} />}
               <Categories
                 categories={categories}
                 seeAllHandler={() => navigation.navigate('Categories')}
@@ -129,9 +134,9 @@ const mapStateToProps = state => {
       categories,
       featuredItems,
       bestSellItems,
+      information,
     },
     products: {searchText, searchProductRequest: isSearching},
-    information: {information},
   } = state;
   return {
     requesting,
@@ -149,6 +154,7 @@ export default connect(
   {
     getDashboardDataRequest,
     getCustomersRequest,
+    getInformationRequest,
     searchProductRequest,
     handleSearchTextChange,
   },

@@ -1,9 +1,10 @@
 import {takeLatest, call, put} from 'redux-saga/effects';
 import * as types from '../actions/information';
-import {getApi} from '../utils/apiHelper';
+import {getInformation} from '../services/information';
 
 function* getInformationRequest(action) {
-  const response = yield call(getApi, '/notifications/');
+  const {params} = action;
+  const response = yield call(getInformation, params);
 
   if (response.status === 200) {
     yield put({type: types.GET_INFORMATION_SUCCESS, payload: response.data});

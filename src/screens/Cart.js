@@ -33,11 +33,11 @@ class Cart extends Component {
       props: {cart, organization, postOrderRequest},
     } = this;
 
-    if (organization.role === 'Marketing' && !customer) {
-      return this.setState({
-        customerErr: 'Please select a customer.',
-      });
-    }
+    // if (organization.role === 'Marketing' && !customer) {
+    //   return this.setState({
+    //     customerErr: 'Please select a customer.',
+    //   });
+    // }
     postOrderRequest({
       rows: cart.map(item => {
         const {quantity, ...product} = item;
@@ -113,7 +113,7 @@ class Cart extends Component {
             <View style={styles.cardWrapper}>{cart.map(this._renderItem)}</View>
           )}
 
-          {cart.length > 0 && organization.role === 'Marketing' && (
+          {/* {cart.length > 0 && organization.role === 'Marketing' && (
             <View
               style={{
                 marginVertical: 20,
@@ -137,7 +137,7 @@ class Cart extends Component {
 
               {customerErr && <Text style={{color: 'red'}}>{customerErr}</Text>}
             </View>
-          )}
+          )} */}
           {cart.length > 0 && (
             <View style={styles.buttonWrapper}>
               <GradientBtn
@@ -173,10 +173,13 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, {
-  removeFromCart,
-  handleQuantityChange,
-  handleQuantityDecrement,
-  handleQuantityIncrement,
-  postOrderRequest,
-})(Cart);
+export default connect(
+  mapStateToProps,
+  {
+    removeFromCart,
+    handleQuantityChange,
+    handleQuantityDecrement,
+    handleQuantityIncrement,
+    postOrderRequest,
+  },
+)(Cart);

@@ -17,20 +17,7 @@ export default class Slider extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      slides: [
-        {
-          img: require('vetproject/src/static/img/hen.jpg'),
-          title: 'How to raise a chicken !',
-        },
-        {
-          img: require('vetproject/src/static/img/goat.jpg'),
-          title: 'How to raise a goat !',
-        },
-        {
-          img: require('vetproject/src/static/img/cow.jpg'),
-          title: 'How to raise a cow !',
-        },
-      ],
+      slides: [],
       selectedIndex: 0,
     };
     this.scrollRef = React.createRef();
@@ -48,8 +35,7 @@ export default class Slider extends Component {
     this.setState({selectedIndex});
   };
 
-  componentDidMount() {
-    this._isMounted = true;
+  autoScroll = () => {
     setInterval(() => {
       if (this._isMounted) {
         this.setState(
@@ -69,6 +55,21 @@ export default class Slider extends Component {
         );
       }
     }, 3000);
+  };
+
+  componentDidMount() {
+    this._isMounted = true;
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.information !== this.props.information) {
+      this.setState(
+        {
+          slides: this.props.information,
+        },
+        this.autoScroll,
+      );
+    }
   }
 
   render() {
@@ -77,6 +78,7 @@ export default class Slider extends Component {
       setSelectedIndex,
       scrollRef,
     } = this;
+
     return (
       <View style={styles.sliderWrapper}>
         <ScrollView
@@ -86,9 +88,9 @@ export default class Slider extends Component {
           onMomentumScrollEnd={setSelectedIndex}
           ref={scrollRef}>
           {slides.map(slide => (
-            <View key={slide.img}>
+            <View key={slide.id}>
               <Image
-                source={slide.img}
+                source={{uri: slide.photo}}
                 style={{width: slideWidth, height: 220}}
               />
 
@@ -130,7 +132,7 @@ export default class Slider extends Component {
               <View style={styles.dotWrapper}>
                 {slides.map((slide, i) => (
                   <View
-                    key={slide.img}
+                    key={slide.id}
                     style={{
                       ...styles.dot,
                       ...(selectedIndex === i && {

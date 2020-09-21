@@ -5,7 +5,7 @@ import {Icon} from 'react-native-elements';
 
 export default class Accordian extends Component {
   constructor(props) {
-    super(props);
+    super();
     this.state = {
       data: props.data,
       expanded: false,

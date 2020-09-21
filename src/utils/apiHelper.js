@@ -8,7 +8,7 @@ export async function getApi(url) {
   try {
     const token = await AsyncStorage.getItem('token');
 
-    return await axios.get(url, {
+    return axios.get(url, {
       headers: {...(token && {Authorization: `Token ${token}`})},
     });
   } catch (err) {

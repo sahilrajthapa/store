@@ -131,7 +131,7 @@ class Detail extends Component {
               }}
             />
 
-            <View
+            {/* <View
               style={{
                 position: 'absolute',
                 right: 30,
@@ -147,7 +147,7 @@ class Detail extends Component {
                   iconStyle={styles.icon}
                 />
               </TouchableOpacity>
-            </View>
+            </View> */}
           </View>
           <Text style={styles.title}>{product.name}</Text>
           <View style={styles.descrpWrapper}>
