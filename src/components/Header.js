@@ -18,14 +18,14 @@ function Header({navigation, cart}) {
         }
       />
       <View style={{flexDirection: 'row', paddingRight: 20}}>
-        <TouchableOpacity onPress={() => navigation.navigate('Message')}>
+        {/* <TouchableOpacity onPress={() => navigation.navigate('Message')}>
           <Icon
             color={colors.gray}
             name={'add'}
             iconStyle={styles.icon}
             size={30}
           />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
 
         <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
           <Icon
@@ -102,4 +102,7 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, null)(Header);
+export default connect(
+  mapStateToProps,
+  null,
+)(Header);

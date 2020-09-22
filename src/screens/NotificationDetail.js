@@ -16,16 +16,12 @@ export default class NotificationDetail extends Component {
       showForm: !prevState.showForm,
     }));
   };
+
   _renderItem = () => {
-    return (
-      <Notification
-        // key={}
-        //   index={index}
-        //   condtn={index === 0}
-        //   wrapperStyle={{marginTop: 15}}
-        detailPage
-      />
-    );
+    const {navigation} = this.props;
+    const notification = navigation.getParam('notification');
+
+    return <Notification notification={notification} detailPage />;
   };
 
   render() {

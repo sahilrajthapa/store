@@ -7,7 +7,7 @@ import profileReducer from './profile';
 import cartReducer from './cart';
 import ordersReducer from './orders';
 import customersReducer from './customers';
-import informationReducer from './information';
+import notificationsReducer from './notifications';
 
 const rootReducer = combineReducers({
   login: loginReducer,
@@ -18,7 +18,7 @@ const rootReducer = combineReducers({
   cart: cartReducer,
   orders: ordersReducer,
   customers: customersReducer,
-  information: informationReducer,
+  notifications: notificationsReducer,
 });
 
 export default rootReducer;

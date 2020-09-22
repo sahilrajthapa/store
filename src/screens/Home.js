@@ -10,9 +10,9 @@ import Categories from '../components/Categories';
 import Featured from '../components/Featured';
 import BestSell from '../components/BestSell';
 
-import {getDashboardDataRequest, getInformationRequest} from '../actions/home';
+import {getDashboardDataRequest} from '../actions/home';
 import {getCustomersRequest} from '../actions/customers';
-
+import {getInformationRequest} from '../actions/notifications';
 import {
   searchProductRequest,
   handleSearchTextChange,
@@ -36,7 +36,7 @@ class Home extends Component {
     // this.props.getCustomersRequest();
     this.props.getInformationRequest({
       filter_type: 0,
-      selected: 2,
+      selected: 1,
       per_page: 3,
     });
 
@@ -85,7 +85,6 @@ class Home extends Component {
       );
     }
 
-    console.log('information', information);
     return (
       <ContainerView navigation={navigation}>
         <Grid>
@@ -137,9 +136,9 @@ const mapStateToProps = state => {
       categories,
       featuredItems,
       bestSellItems,
-      information,
     },
     products: {searchText, searchProductRequest: isSearching},
+    notifications: {sliderInformation: information},
   } = state;
   return {
     requesting,
