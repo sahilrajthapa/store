@@ -39,6 +39,7 @@ class Home extends Component {
       selected: 2,
       per_page: 3,
     });
+
     this.willFocusListener = this.props.navigation.addListener(
       'willFocus',
       () => {
@@ -84,6 +85,7 @@ class Home extends Component {
       );
     }
 
+    console.log('information', information);
     return (
       <ContainerView navigation={navigation}>
         <Grid>
@@ -95,20 +97,21 @@ class Home extends Component {
                 searchProductRequest={searchProductRequest}
               />
               {information.length > 0 && <Slider information={information} />}
-              <Categories
-                categories={categories}
-                seeAllHandler={() => navigation.navigate('Categories')}
-              />
-              <Featured
-                featuredItems={featuredItems}
-                seeAllHandler={() => navigation.navigate('ProductList')}
-                navigation={navigation}
-              />
-              <BestSell
-                bestSellItems={bestSellItems}
-                seeAllHandler={() => navigation.navigate('ProductList')}
-                navigation={navigation}
-              />
+              {categories.length > 0 && (
+                <Categories categories={categories} navigation={navigation} />
+              )}
+              {featuredItems.length > 0 && (
+                <Featured
+                  featuredItems={featuredItems}
+                  navigation={navigation}
+                />
+              )}
+              {bestSellItems.length > 0 && (
+                <BestSell
+                  bestSellItems={bestSellItems}
+                  navigation={navigation}
+                />
+              )}
             </Col>
           </Row>
         </Grid>

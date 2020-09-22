@@ -36,7 +36,6 @@ function loginReducer(state = initialState, action = {}) {
       };
 
     case types.GET_INFORMATION_SUCCESS:
-      console.log('payload', action.payload);
       return {
         ...state,
         information: action.payload,

@@ -25,10 +25,13 @@ export default class BestSell extends Component {
   };
 
   render() {
-    const {seeAllHandler, bestSellItems} = this.props;
+    const {navigation, bestSellItems} = this.props;
     return (
       <Section>
-        <Heading heading="Best Sell" seeAllHandler={seeAllHandler} />
+        <Heading
+          heading="Best Sell"
+          seeAllHandler={() => navigation.navigate('ProductList')}
+        />
         <View style={styles.cardWrapper}>
           {bestSellItems.map(this._renderItem)}
         </View>

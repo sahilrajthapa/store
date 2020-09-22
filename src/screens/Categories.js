@@ -40,6 +40,7 @@ class Categories extends Component {
                 key={index}
                 index={index}
                 wrapperStyle={styles.wrapperStyle}
+                navigation={navigation}
                 category={category}
               />
             ))}

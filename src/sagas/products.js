@@ -1,10 +1,12 @@
 import {takeLatest, call, put} from 'redux-saga/effects';
 import * as types from '../actions/products';
 import {getApi} from '../utils/apiHelper';
+import {getProducts} from '../services/products';
 import NavigationService from '../navigations/NavigationService';
 
 function* getProductsRequest(action) {
-  const response = yield call(getApi, '/products/');
+  const {params} = action;
+  const response = yield call(getProducts, params);
 
   if (response.status === 200) {
     yield put({type: types.GET_PRODUCTS_SUCCESS, payload: response.data});
@@ -18,7 +20,8 @@ function* searchProductRequest(action) {
     payload: {searchText},
   } = action;
 
-  const response = yield call(getApi, `/products/?search=${searchText}`);
+  const params = {search: searchText};
+  const response = yield call(getProducts, params);
 
   if (response.status === 200) {
     yield NavigationService.navigate('SearchResult');

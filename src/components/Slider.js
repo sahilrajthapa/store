@@ -17,7 +17,7 @@ export default class Slider extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      slides: [],
+      slides: this.props.information,
       selectedIndex: 0,
     };
     this.scrollRef = React.createRef();

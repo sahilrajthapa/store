@@ -12,7 +12,7 @@ export const SEARCH_PRODUCT_FAILURE = 'SEARCH_PRODUCT_FAILURE';
 
 export const HANDLE_SEARCH_TEXT_CHANGE = 'HANDLE_SEARCH_TEXT_CHANGE';
 
-export const getProductsRequest = action(GET_PRODUCTS_REQUEST, 'payload');
+export const getProductsRequest = action(GET_PRODUCTS_REQUEST, 'params');
 
 export const searchProductRequest = action(SEARCH_PRODUCT_REQUEST, 'payload');
 

@@ -3,7 +3,6 @@ import Section from './Section';
 import Heading from './Heading';
 import HorizontalScroll from './HorizontalScroll';
 import CategoryCard from './CategoryCard';
-import {ENTRIES1} from '../static/entries';
 
 const wrapperStyle = {
   width: 185,
@@ -13,11 +12,14 @@ const wrapperStyle = {
 };
 export default class Categories extends Component {
   render() {
-    const {categories, seeAllHandler} = this.props;
+    const {categories, navigation} = this.props;
 
     return (
       <Section>
-        <Heading heading="Categories" seeAllHandler={seeAllHandler} />
+        <Heading
+          heading="Categories"
+          seeAllHandler={() => navigation.navigate('Categories')}
+        />
         <HorizontalScroll>
           {categories.map((category, index) => (
             <CategoryCard
@@ -26,9 +28,10 @@ export default class Categories extends Component {
               wrapperStyle={{
                 ...wrapperStyle,
                 ...(index === 0 && {marginLeft: 0}),
-                ...(index === ENTRIES1.length - 1 && {marginRight: 0}),
+                ...(index === categories.length - 1 && {marginRight: 0}),
               }}
               category={category}
+              navigation={navigation}
             />
           ))}
         </HorizontalScroll>
