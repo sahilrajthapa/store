@@ -1,17 +1,21 @@
 import React, {Component} from 'react';
 
-import {View, Text, TextInput, StyleSheet} from 'react-native';
+import {View, Text, TextInput, Image, StyleSheet} from 'react-native';
 
 import GradientBtn from './GradientBtn';
 
 import colors from '../styles/color';
 
 class MessageForm extends Component {
-  state = {
-    text: '',
-  };
   render() {
-    const {title} = this.props;
+    const {
+      title,
+      message,
+      photo,
+      handleInputChange,
+      handleChoosePhoto,
+      handleMessageSubmission,
+    } = this.props;
     return (
       <View style={{marginBottom: 25}}>
         <View style={{marginTop: 35, marginBottom: 25}}>
@@ -19,11 +23,19 @@ class MessageForm extends Component {
           <TextInput
             multiline={true}
             numberOfLines={6}
-            onChangeText={text => this.setState({text})}
-            value={this.state.text}
+            onChangeText={handleInputChange}
+            value={message}
             style={styles.textInput}
           />
         </View>
+        {photo && (
+          <View style={{marginBottom: 20}}>
+            <Image
+              source={{uri: photo.uri}}
+              style={{width: '100%', height: 300}}
+            />
+          </View>
+        )}
 
         <View style={styles.buttonWrapper}>
           <View style={{width: '40%'}}>
@@ -31,7 +43,7 @@ class MessageForm extends Component {
               name="Upload Image"
               raised
               borderRadius={5}
-              onPressHandler={() => {}}
+              onPressHandler={handleChoosePhoto}
             />
           </View>
           <View style={{width: '25%'}}>
@@ -39,7 +51,7 @@ class MessageForm extends Component {
               name="Send"
               raised
               borderRadius={5}
-              onPressHandler={() => {}}
+              onPressHandler={handleMessageSubmission}
             />
           </View>
         </View>

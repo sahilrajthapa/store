@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import {View, StyleSheet} from 'react-native';
+import ImagePicker from 'react-native-image-picker';
+import {connect} from 'react-redux';
 import ContainerView from '../components/ContainerView';
 import Section from '../components/Section';
 import Heading from '../components/Heading';
@@ -8,15 +10,57 @@ import Notification from '../components/Notification';
 import MessageForm from '../components/MessageForm';
 import GradientBtn from '../components/GradientBtn';
 
-export default class NotificationDetail extends Component {
-  state = {showForm: false};
+import {
+  toggleForm,
+  updateFormField,
+  postNotificationMessageRequest,
+} from '../actions/notifications';
+
+class NotificationDetail extends Component {
+  state = {showForm: false, text: '', photo: null};
 
   toggleShowForm = () => {
     this.setState(prevState => ({
       showForm: !prevState.showForm,
+      text: '',
+      photo: null,
     }));
   };
 
+  handleInputChange = message => {
+    this.props.updateFormField({name: 'message', value: message});
+    // this.setState({text});
+  };
+
+  handleChoosePhoto = () => {
+    const options = {
+      skipBackup: true,
+      path: 'images',
+    };
+    ImagePicker.launchImageLibrary(options, response => {
+      if (response.uri) {
+        this.props.updateFormField({name: 'photo', value: response});
+        // this.setState({photo: response});
+      }
+    });
+  };
+
+  handleMessageSubmission = () => {
+    const {
+      props: {
+        navigation,
+        form: {message, photo},
+        postNotificationMessageRequest,
+      },
+    } = this;
+    const notification = navigation.getParam('notification');
+
+    postNotificationMessageRequest({
+      message,
+      notification: notification.id,
+      photo: photo.data,
+    });
+  };
   _renderItem = () => {
     const {navigation} = this.props;
     const notification = navigation.getParam('notification');
@@ -26,9 +70,14 @@ export default class NotificationDetail extends Component {
 
   render() {
     const {
-      props: {navigation},
-      state: {showForm},
-      toggleShowForm,
+      props: {
+        navigation,
+        form: {show, message, photo},
+        toggleForm,
+      },
+      handleInputChange,
+      handleChoosePhoto,
+      handleMessageSubmission,
     } = this;
     return (
       <ContainerView navigation={navigation}>
@@ -36,12 +85,21 @@ export default class NotificationDetail extends Component {
           <Heading heading="Notification" fontSize={30} screen />
           <View style={styles.cardWrapper}>{this._renderItem()}</View>
           <GradientBtn
-            name={showForm ? 'Ignore' : 'Respond'}
+            name={show ? 'Ignore' : 'Respond'}
             raised
             borderRadius={5}
-            onPressHandler={toggleShowForm}
+            onPressHandler={toggleForm}
           />
-          {showForm && <MessageForm title="Message" />}
+          {show && (
+            <MessageForm
+              title="Message"
+              message={message}
+              photo={photo}
+              handleInputChange={handleInputChange}
+              handleChoosePhoto={handleChoosePhoto}
+              handleMessageSubmission={handleMessageSubmission}
+            />
+          )}
         </Section>
       </ContainerView>
     );
@@ -59,3 +117,17 @@ const styles = StyleSheet.create({
     marginVertical: 20,
   },
 });
+
+const mapStateToProps = state => {
+  console.log(':State', state);
+  const {
+    notifications: {form},
+  } = state;
+  return {
+    form,
+  };
+};
+export default connect(
+  mapStateToProps,
+  {toggleForm, updateFormField, postNotificationMessageRequest},
+)(NotificationDetail);

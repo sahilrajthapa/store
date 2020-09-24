@@ -35,12 +35,6 @@ function loginReducer(state = initialState, action = {}) {
         getDashboardDataRequest: false,
       };
 
-    case types.GET_INFORMATION_SUCCESS:
-      return {
-        ...state,
-        information: action.payload,
-      };
-
     default: {
       return state;
     }

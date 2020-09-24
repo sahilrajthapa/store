@@ -5,6 +5,11 @@ const initialState = {
   sliderInformation: [],
   information: [],
   notifications: [],
+  form: {
+    show: false,
+    message: '',
+    photo: null,
+  },
 };
 
 function getInformationSuccess(state, action) {
@@ -47,9 +52,40 @@ function notificationsReducer(state = initialState, action = {}) {
         notifications: action.payload,
       };
 
-    default: {
-      return state;
+    case types.TOGGLE_FORM:
+      return {
+        ...state,
+        form: {
+          ...state.form,
+          show: !state.form.show,
+        },
+      };
+
+    case types.UPDATE_FORM_FIELD: {
+      const {
+        payload: {name, value},
+      } = action;
+      return {
+        ...state,
+        form: {
+          ...state.form,
+          [name]: value,
+        },
+      };
     }
+
+    case types.POST_NOTIFICATION_MESSAGE_SUCCESS:
+      return {
+        ...state,
+        form: {
+          show: false,
+          message: '',
+          photo: null,
+        },
+      };
+
+    default:
+      return state;
   }
 }
 export default notificationsReducer;
