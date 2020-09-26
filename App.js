@@ -9,13 +9,13 @@ export default class App extends React.Component {
   render() {
     return (
       <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
-          <Navigation
-            ref={navigatorRef => {
-              NavigationService.setTopLevelNavigator(navigatorRef);
-            }}
-          />
-        </PersistGate>
+        {/* <PersistGate loading={null} persistor={persistor}> */}
+        <Navigation
+          ref={navigatorRef => {
+            NavigationService.setTopLevelNavigator(navigatorRef);
+          }}
+        />
+        {/* </PersistGate> */}
       </Provider>
     );
   }

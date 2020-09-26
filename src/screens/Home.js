@@ -85,6 +85,7 @@ class Home extends Component {
       );
     }
 
+    console.log('featured', this.props);
     return (
       <ContainerView navigation={navigation}>
         <Grid>
@@ -95,7 +96,9 @@ class Home extends Component {
                 handleSearchTextChange={handleSearchTextChange}
                 searchProductRequest={searchProductRequest}
               />
-              {information.length > 0 && <Slider information={information} />}
+              {information.length > 0 && (
+                <Slider information={information} navigation={navigation} />
+              )}
               {categories.length > 0 && (
                 <Categories categories={categories} navigation={navigation} />
               )}

@@ -1,10 +1,15 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, ImageBackground, StyleSheet} from 'react-native';
 import {Icon} from 'react-native-elements';
 import formatDistance from 'date-fns/formatDistance';
 import colors from '../styles/color';
 
-export default function Notification({wrapperStyle, notification, detailPage}) {
+export default function Notification({
+  wrapperStyle,
+  notification,
+  notificationType,
+  detailPage,
+}) {
   return (
     <View style={{...styles.card, ...wrapperStyle}}>
       <View style={{width: '100%'}}>
@@ -15,6 +20,16 @@ export default function Notification({wrapperStyle, notification, detailPage}) {
           }}>
           {notification.title}
         </Text>
+
+        {detailPage && notificationType === 'information' && (
+          <ImageBackground
+            source={{uri: notification.photo_url}}
+            style={{
+              width: '100%',
+              height: 200,
+            }}
+          />
+        )}
         <Text
           style={styles.subTitle}
           {...!detailPage && {numberOfLines: 2, ellipsizeMode: 'tail'}}>

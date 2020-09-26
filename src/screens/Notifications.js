@@ -9,7 +9,7 @@ import {getNotificationsRequest} from '../actions/notifications';
 
 class Notifications extends Component {
   componentDidMount() {
-    this.props.getNotificationsRequest({fiter_type: 3});
+    this.props.getNotificationsRequest({filter_type: 3});
   }
 
   _renderItem = (notification, index) => {
@@ -17,7 +17,10 @@ class Notifications extends Component {
     return (
       <TouchableOpacity
         onPress={() => {
-          navigation.navigate('NotificationDetail', {notification});
+          navigation.navigate('NotificationDetail', {
+            notification,
+            type: 'notification',
+          });
         }}
         key={index}>
         <Notification

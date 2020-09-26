@@ -13,7 +13,10 @@ export default function Heading({
     <Grid>
       <Row>
         <Col size={3}>
-          <Text style={{fontSize, fontWeight: '600'}}>{heading}</Text>
+          <Text
+            style={{fontSize, fontWeight: '600', textTransform: 'capitalize'}}>
+            {heading}
+          </Text>
         </Col>
         <Col size={1}>
           {!screen && (

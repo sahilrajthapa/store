@@ -1,34 +1,44 @@
 import React, {Component} from 'react';
 import {View, TouchableOpacity, StyleSheet} from 'react-native';
+import {connect} from 'react-redux';
 import ContainerView from '../components/ContainerView';
 import Section from '../components/Section';
 import Heading from '../components/Heading';
-
 import Notification from '../components/Notification';
+import {getInformationRequest} from '../actions/notifications';
 
-export default class Informations extends Component {
-  _renderItem = (item, index) => {
+class Notifications extends Component {
+  componentDidMount() {
+    this.props.getInformationRequest({filter_type: 0});
+  }
+
+  _renderItem = (notification, index) => {
     const {navigation} = this.props;
     return (
-      <Notification
-        key={index}
-        index={index}
-        condtn={index === 0}
-        wrapperStyle={{marginTop: 15}}
-      />
+      <TouchableOpacity
+        onPress={() => {
+          navigation.navigate('NotificationDetail', {
+            notification,
+            type: 'information',
+          });
+        }}
+        key={index}>
+        <Notification
+          wrapperStyle={index === 0 ? {marginTop: 15} : {}}
+          notification={notification}
+        />
+      </TouchableOpacity>
     );
   };
 
   render() {
-    const {navigation} = this.props;
+    const {navigation, information} = this.props;
     return (
       <ContainerView navigation={navigation}>
         <Section marginTop={20}>
-          <Heading heading="Informations" fontSize={30} screen />
+          <Heading heading="Information" fontSize={30} screen />
           <View style={styles.cardWrapper}>
-            {Array(5)
-              .fill('')
-              .map(this._renderItem)}
+            {information.map(this._renderItem)}
           </View>
         </Section>
       </ContainerView>
@@ -46,3 +56,19 @@ const styles = StyleSheet.create({
     marginVertical: 20,
   },
 });
+
+const mapStateToProps = state => {
+  const {
+    notifications: {information},
+  } = state;
+  return {
+    information,
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  {
+    getInformationRequest,
+  },
+)(Notifications);

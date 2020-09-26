@@ -17,19 +17,8 @@ import {
 } from '../actions/notifications';
 
 class NotificationDetail extends Component {
-  state = {showForm: false, text: '', photo: null};
-
-  toggleShowForm = () => {
-    this.setState(prevState => ({
-      showForm: !prevState.showForm,
-      text: '',
-      photo: null,
-    }));
-  };
-
   handleInputChange = message => {
     this.props.updateFormField({name: 'message', value: message});
-    // this.setState({text});
   };
 
   handleChoosePhoto = () => {
@@ -40,7 +29,6 @@ class NotificationDetail extends Component {
     ImagePicker.launchImageLibrary(options, response => {
       if (response.uri) {
         this.props.updateFormField({name: 'photo', value: response});
-        // this.setState({photo: response});
       }
     });
   };
@@ -64,8 +52,14 @@ class NotificationDetail extends Component {
   _renderItem = () => {
     const {navigation} = this.props;
     const notification = navigation.getParam('notification');
-
-    return <Notification notification={notification} detailPage />;
+    const notificationType = navigation.getParam('type');
+    return (
+      <Notification
+        notification={notification}
+        notificationType={notificationType}
+        detailPage
+      />
+    );
   };
 
   render() {
@@ -79,10 +73,11 @@ class NotificationDetail extends Component {
       handleChoosePhoto,
       handleMessageSubmission,
     } = this;
+    const notificationType = navigation.getParam('type');
     return (
       <ContainerView navigation={navigation}>
         <Section marginTop={20}>
-          <Heading heading="Notification" fontSize={30} screen />
+          <Heading heading={notificationType} fontSize={30} screen />
           <View style={styles.cardWrapper}>{this._renderItem()}</View>
           <GradientBtn
             name={show ? 'Ignore' : 'Respond'}

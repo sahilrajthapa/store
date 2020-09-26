@@ -74,6 +74,7 @@ export default class Slider extends Component {
 
   render() {
     const {
+      props: {navigation},
       state: {slides, selectedIndex},
       setSelectedIndex,
       scrollRef,
@@ -110,7 +111,12 @@ export default class Slider extends Component {
                         height: 40,
                         width: 100,
                       }}
-                      onPress={() => console.log('Button pressed !!!')}>
+                      onPress={() => {
+                        navigation.navigate('NotificationDetail', {
+                          notification: slide,
+                          type: 'information',
+                        });
+                      }}>
                       <Text
                         style={{
                           backgroundColor: '#83C025',
