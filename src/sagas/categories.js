@@ -1,13 +1,12 @@
 import {takeLatest, call, put, fork} from 'redux-saga/effects';
 import * as types from '../actions/categories';
-import {getApi} from '../utils/apiHelper';
+import {getCategories} from '../services/categories';
 
-function* getCategoriesRequest(action) {
-  const response = yield call(getApi, '/categories/');
-
-  if (response.status === 200) {
+function* getCategoriesRequest() {
+  try {
+    const response = yield call(getCategories);
     yield put({type: types.GET_CATEGORIES_SUCCESS, payload: response.data});
-  } else {
+  } catch (err) {
     yield put({type: types.GET_CATEGORIES_FAILURE});
   }
 }

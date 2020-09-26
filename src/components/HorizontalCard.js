@@ -26,8 +26,10 @@ export default function Card({
         style={{
           width: '35%',
           height: 115,
-        }}></Image>
+        }}
+      />
       <View style={{paddingHorizontal: 15, width: '65%'}}>
+        {productId && <Text>{productId}</Text>}
         <Text style={styles.title}>{productName}</Text>
         {/* <Text style={styles.subTitle}>Lotto.ltdaa</Text> */}
         <View style={{width: '100%'}}>

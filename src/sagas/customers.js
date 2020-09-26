@@ -1,13 +1,12 @@
 import {takeLatest, call, put} from 'redux-saga/effects';
 import * as types from '../actions/customers';
-import {getApi} from '../utils/apiHelper';
+import {getCustomers} from '../services/customers';
 
-function* getCustomersRequest(action) {
-  const response = yield call(getApi, '/customers/');
-
-  if (response.status === 200) {
+function* getCustomersRequest() {
+  try {
+    const response = yield call(getCustomers);
     yield put({type: types.GET_CUSTOMERS_SUCCESS, payload: response.data});
-  } else {
+  } catch (err) {
     yield put({type: types.GET_CUSTOMERS_FAILURE});
   }
 }

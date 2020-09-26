@@ -49,14 +49,14 @@ const Drawer = createDrawerNavigator(
       screen: VeterinarianScreen,
       navigationOptions: {drawerLabel: 'Our Veterinarian'},
     },
-    Contact: {
-      screen: ContactScreen,
-      navigationOptions: {drawerLabel: 'Contacts'},
-    },
-    FindMe: {
-      screen: FindMeScreen,
-      navigationOptions: {drawerLabel: 'Find Me'},
-    },
+    // Contact: {
+    //   screen: ContactScreen,
+    //   navigationOptions: {drawerLabel: 'Contacts'},
+    // },
+    // FindMe: {
+    //   screen: FindMeScreen,
+    //   navigationOptions: {drawerLabel: 'Find Me'},
+    // },
   },
   {
     contentComponent: DrawerContent,

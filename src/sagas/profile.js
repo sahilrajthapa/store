@@ -1,13 +1,12 @@
 import {takeLatest, call, put} from 'redux-saga/effects';
 import * as types from '../actions/profile';
-import {getApi} from '../utils/apiHelper';
+import {getProfile} from '../services/profile';
 
-function* getProfileRequest(action) {
-  const response = yield call(getApi, '/profile/');
-
-  if (response.status === 200) {
+function* getProfileRequest() {
+  try {
+    const response = yield call(getProfile);
     yield put({type: types.GET_PROFILE_SUCCESS, payload: response.data});
-  } else {
+  } catch (err) {
     yield put({type: types.GET_PROFILE_FAILURE});
   }
 }

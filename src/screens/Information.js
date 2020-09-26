@@ -9,7 +9,10 @@ import {getInformationRequest} from '../actions/notifications';
 
 class Notifications extends Component {
   componentDidMount() {
-    this.props.getInformationRequest({filter_type: 0});
+    this.props.getInformationRequest({
+      filter_type: 0,
+      selected: 0,
+    });
   }
 
   _renderItem = (notification, index) => {
