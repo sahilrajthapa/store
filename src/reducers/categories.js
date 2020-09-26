@@ -22,7 +22,7 @@ function categoriesReducer(state = initialState, action = {}) {
         categories: action.payload,
       };
 
-    case types.GET_CATEGORIES_SUCCESS:
+    case types.GET_CATEGORIES_FAILURE:
       return {
         ...state,
         getCategoriesFailure: true,

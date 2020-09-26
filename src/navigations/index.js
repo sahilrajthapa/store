@@ -36,10 +36,10 @@ const Drawer = createDrawerNavigator(
       screen: ProfileScreen,
       navigationOptions: {drawerLabel: 'My Profile'},
     },
-    Balance: {
-      screen: BalanceScreen,
-      navigationOptions: {drawerLabel: 'My Balance'},
-    },
+    // Balance: {
+    //   screen: BalanceScreen,
+    //   navigationOptions: {drawerLabel: 'My Balance'},
+    // },
     Order: {
       screen: OrderScreen,
       navigationOptions: {drawerLabel: 'My Orders'},

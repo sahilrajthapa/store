@@ -11,13 +11,14 @@ import MessageForm from '../components/MessageForm';
 export default class VeterinarianDetail extends Component {
   render() {
     const {navigation} = this.props;
+    const contact = navigation.getParam('contact');
     return (
       <ContainerView navigation={navigation}>
         <Section marginTop={20}>
           <Heading heading="Veterinarian" fontSize={30} screen />
-          <UserImage />
-          <UserInfo label="Name" value="Shree Subedi" />
-          <UserInfo label="Speciality" value="Physician" />
+          <UserImage uri={contact.user.photo_url} />
+          <UserInfo label="Name" value={contact.user.username} />
+          <UserInfo label="Speciality" value="" />
           <MessageForm title="Queries" />
         </Section>
       </ContainerView>
