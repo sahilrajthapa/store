@@ -17,6 +17,7 @@ function* postMessageRequest(action) {
     const {payload} = action;
     yield call(postMessage, payload);
     yield put({type: types.POST_MESSAGE_SUCCESS});
+    yield put({type: types.RESET_FORM});
     ToastAndroid.show('Message was send successfully!', ToastAndroid.SHORT);
   } catch (err) {
     yield put({type: types.POST_MESSAGE_FAILURE});

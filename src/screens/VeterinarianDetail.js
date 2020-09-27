@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet} from 'react-native';
+import {ToastAndroid, StyleSheet} from 'react-native';
 import ImagePicker from 'react-native-image-picker';
 import {connect} from 'react-redux';
 import ContainerView from '../components/ContainerView';
@@ -13,6 +13,7 @@ import GradientBtn from '../components/GradientBtn';
 import {
   toggleForm,
   updateFormField,
+  resetForm,
   postMessageRequest,
 } from '../actions/contacts';
 
@@ -42,6 +43,14 @@ class VeterinarianDetail extends Component {
       },
     } = this;
     const contact = navigation.getParam('contact');
+
+    if (!message) {
+      return ToastAndroid.show('Please add query!', ToastAndroid.SHORT);
+    }
+
+    if (!photo) {
+      return ToastAndroid.show('Please add photo!', ToastAndroid.SHORT);
+    }
 
     postMessageRequest({
       query: message,
@@ -88,6 +97,9 @@ class VeterinarianDetail extends Component {
       </ContainerView>
     );
   }
+  componentWillUnmount() {
+    this.props.resetForm();
+  }
 }
 
 const styles = StyleSheet.create({
@@ -125,5 +137,5 @@ const mapStateToProps = state => {
 };
 export default connect(
   mapStateToProps,
-  {toggleForm, updateFormField, postMessageRequest},
+  {toggleForm, resetForm, updateFormField, postMessageRequest},
 )(VeterinarianDetail);

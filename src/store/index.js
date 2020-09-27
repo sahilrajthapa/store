@@ -16,15 +16,13 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-// const store = createStore(persistedReducer, applyMiddleware(sagaMiddleware));
 const store = createStore(
-  rootReducer,
+  persistedReducer,
   composeWithDevTools(applyMiddleware(sagaMiddleware)),
 );
 
-// const persistor = persistStore(store);
+const persistor = persistStore(store);
 
 sagaMiddleware.run(rootSaga);
 
-// export {store, persistor};
-export {store};
+export {store, persistor};

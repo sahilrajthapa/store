@@ -22,6 +22,8 @@ export const TOGGLE_FORM = 'NOTIFICATIONS/TOGGLE_FORM';
 
 export const UPDATE_FORM_FIELD = 'NOTIFICATIONS/UPDATE_FORM_FIELD';
 
+export const RESET_FORM = 'NOTIFICATIONS/RESET_FORM';
+
 export const getInformationRequest = action(GET_INFORMATION_REQUEST, 'params');
 
 export const getNotificationsRequest = action(
@@ -35,5 +37,7 @@ export const postNotificationMessageRequest = action(
 );
 
 export const toggleForm = action(TOGGLE_FORM);
+
+export const resetForm = action(RESET_FORM);
 
 export const updateFormField = action(UPDATE_FORM_FIELD, 'payload');

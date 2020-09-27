@@ -74,7 +74,7 @@ function notificationsReducer(state = initialState, action = {}) {
       };
     }
 
-    case types.POST_NOTIFICATION_MESSAGE_SUCCESS:
+    case types.RESET_FORM:
       return {
         ...state,
         form: {

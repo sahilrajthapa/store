@@ -5,9 +5,11 @@ import {DrawerItems} from 'react-navigation-drawer';
 import LinearGradient from 'react-native-linear-gradient';
 import {Button} from 'react-native-elements';
 import AsyncStorage from '@react-native-community/async-storage';
+import {persistor} from '../store';
 
 async function logOutHandler(navigation) {
   await AsyncStorage.removeItem('token');
+  persistor.purge();
   navigation.navigate('Auth');
 }
 export function DrawerContent(props) {

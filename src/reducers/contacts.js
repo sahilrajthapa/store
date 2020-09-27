@@ -39,7 +39,7 @@ function contactsReducer(state = initialState, action = {}) {
       };
     }
 
-    case types.POST_MESSAGE_SUCCESS:
+    case types.RESET_FORM:
       return {
         ...state,
         form: {

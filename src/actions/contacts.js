@@ -12,10 +12,14 @@ export const TOGGLE_FORM = 'CONTACTS/TOGGLE_FORM';
 
 export const UPDATE_FORM_FIELD = 'CONTACTS/UPDATE_FORM_FIELD';
 
+export const RESET_FORM = 'CONTACTS/RESET_FORM';
+
 export const getContactsRequest = action(GET_CONTACTS_REQUEST);
 
 export const toggleForm = action(TOGGLE_FORM);
 
 export const updateFormField = action(UPDATE_FORM_FIELD, 'payload');
+
+export const resetForm = action(RESET_FORM);
 
 export const postMessageRequest = action(POST_MESSAGE_REQUEST, 'payload');

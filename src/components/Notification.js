@@ -23,10 +23,11 @@ export default function Notification({
 
         {detailPage && notificationType === 'information' && (
           <ImageBackground
-            source={{uri: notification.photo_url}}
+            source={{uri: notification.photo}}
             style={{
               width: '100%',
-              height: 200,
+              height: 225,
+              marginBottom: 10,
             }}
           />
         )}

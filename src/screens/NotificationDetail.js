@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, ToastAndroid, StyleSheet} from 'react-native';
 import ImagePicker from 'react-native-image-picker';
 import {connect} from 'react-redux';
 import ContainerView from '../components/ContainerView';
@@ -13,6 +13,7 @@ import GradientBtn from '../components/GradientBtn';
 import {
   toggleForm,
   updateFormField,
+  resetForm,
   postNotificationMessageRequest,
 } from '../actions/notifications';
 
@@ -42,6 +43,14 @@ class NotificationDetail extends Component {
       },
     } = this;
     const notification = navigation.getParam('notification');
+
+    if (!message) {
+      return ToastAndroid.show('Please add message!', ToastAndroid.SHORT);
+    }
+
+    if (!photo) {
+      return ToastAndroid.show('Please add photo!', ToastAndroid.SHORT);
+    }
 
     postNotificationMessageRequest({
       message,
@@ -99,6 +108,10 @@ class NotificationDetail extends Component {
       </ContainerView>
     );
   }
+
+  componentWillUnmount() {
+    this.props.resetForm();
+  }
 }
 
 const styles = StyleSheet.create({
@@ -123,5 +136,5 @@ const mapStateToProps = state => {
 };
 export default connect(
   mapStateToProps,
-  {toggleForm, updateFormField, postNotificationMessageRequest},
+  {toggleForm, updateFormField, resetForm, postNotificationMessageRequest},
 )(NotificationDetail);
