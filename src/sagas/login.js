@@ -7,7 +7,7 @@ import NavigationService from '../navigations/NavigationService';
 function* loginRequest(action) {
   try {
     const {payload} = action;
-    console.log('postAuth', payload);
+
     const response = yield call(postAuth, payload);
     yield AsyncStorage.setItem('token', response.data.token);
 

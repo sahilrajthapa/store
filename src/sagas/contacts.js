@@ -1,6 +1,7 @@
 import {takeLatest, call, put} from 'redux-saga/effects';
+import {ToastAndroid} from 'react-native';
 import * as types from '../actions/contacts';
-import {getContacts} from '../services/contacts';
+import {getContacts, postMessage} from '../services/contacts';
 
 function* getContactsRequest() {
   try {
@@ -11,8 +12,20 @@ function* getContactsRequest() {
   }
 }
 
+function* postMessageRequest(action) {
+  try {
+    const {payload} = action;
+    yield call(postMessage, payload);
+    yield put({type: types.POST_MESSAGE_SUCCESS});
+    ToastAndroid.show('Message was send successfully!', ToastAndroid.SHORT);
+  } catch (err) {
+    yield put({type: types.POST_MESSAGE_FAILURE});
+  }
+}
+
 function* contactsWatcher() {
   yield takeLatest(types.GET_CONTACTS_REQUEST, getContactsRequest);
+  yield takeLatest(types.POST_MESSAGE_REQUEST, postMessageRequest);
 }
 
 export default contactsWatcher;

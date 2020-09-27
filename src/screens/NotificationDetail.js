@@ -114,7 +114,6 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => {
-  console.log(':State', state);
   const {
     notifications: {form},
   } = state;

@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import {StyleSheet} from 'react-native';
+import ImagePicker from 'react-native-image-picker';
+import {connect} from 'react-redux';
 import ContainerView from '../components/ContainerView';
 import Section from '../components/Section';
 import Heading from '../components/Heading';
@@ -7,10 +9,57 @@ import colors from '../styles/color';
 import UserImage from '../components/UserImage';
 import UserInfo from '../components/UserInfo';
 import MessageForm from '../components/MessageForm';
+import GradientBtn from '../components/GradientBtn';
+import {
+  toggleForm,
+  updateFormField,
+  postMessageRequest,
+} from '../actions/contacts';
 
-export default class VeterinarianDetail extends Component {
+class VeterinarianDetail extends Component {
+  handleInputChange = message => {
+    this.props.updateFormField({name: 'message', value: message});
+  };
+
+  handleChoosePhoto = () => {
+    const options = {
+      skipBackup: true,
+      path: 'images',
+    };
+    ImagePicker.launchImageLibrary(options, response => {
+      if (response.uri) {
+        this.props.updateFormField({name: 'photo', value: response});
+      }
+    });
+  };
+
+  handleMessageSubmission = () => {
+    const {
+      props: {
+        navigation,
+        form: {message, photo},
+        postMessageRequest,
+      },
+    } = this;
+    const contact = navigation.getParam('contact');
+
+    postMessageRequest({
+      query: message,
+      to: contact.id,
+      photo: photo.data,
+    });
+  };
   render() {
-    const {navigation} = this.props;
+    const {
+      props: {
+        navigation,
+        form: {show, message, photo},
+        toggleForm,
+      },
+      handleInputChange,
+      handleChoosePhoto,
+      handleMessageSubmission,
+    } = this;
     const contact = navigation.getParam('contact');
     return (
       <ContainerView navigation={navigation}>
@@ -19,7 +68,22 @@ export default class VeterinarianDetail extends Component {
           <UserImage uri={contact.user.photo_url} />
           <UserInfo label="Name" value={contact.user.username} />
           <UserInfo label="Speciality" value="" />
-          <MessageForm title="Queries" />
+          <GradientBtn
+            name={show ? 'Ignore' : 'Respond'}
+            raised
+            borderRadius={5}
+            onPressHandler={toggleForm}
+          />
+          {show && (
+            <MessageForm
+              title="Queries"
+              message={message}
+              photo={photo}
+              handleInputChange={handleInputChange}
+              handleChoosePhoto={handleChoosePhoto}
+              handleMessageSubmission={handleMessageSubmission}
+            />
+          )}
         </Section>
       </ContainerView>
     );
@@ -50,3 +114,16 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
 });
+
+const mapStateToProps = state => {
+  const {
+    contacts: {form},
+  } = state;
+  return {
+    form,
+  };
+};
+export default connect(
+  mapStateToProps,
+  {toggleForm, updateFormField, postMessageRequest},
+)(VeterinarianDetail);

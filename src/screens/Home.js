@@ -85,7 +85,6 @@ class Home extends Component {
       );
     }
 
-    console.log('featured', this.props);
     return (
       <ContainerView navigation={navigation}>
         <Grid>
